@@ -1,24 +1,39 @@
-import logo from './logo.svg';
+import { BrowserRouter } from 'react-router-dom';
+import Routers from './routers/Routers';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { AuthActions } from './redux/slices/AuthSlice'; 
+import { getAllPlaces } from './redux/actions/PlaceActions';
+import { getAllBookings } from './redux/actions/BookingActions';
 import './App.css';
 
 function App() {
+  const dispatch = useDispatch()
+
+
+
+
+  useEffect(() => {
+    try {
+      dispatch(AuthActions.loginByToken())
+      dispatch(getAllPlaces())
+      dispatch(getAllBookings())
+    } catch (error) {
+      console.log(error)
+    }
+
+
+
+  }, [])
+
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_API_TOKEN}>
+      <BrowserRouter>
+        <Routers/>
+      </BrowserRouter>
+    </GoogleOAuthProvider>
   );
 }
 
