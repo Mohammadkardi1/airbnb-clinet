@@ -9,6 +9,10 @@ export const addBooking = createAsyncThunk('booking/addBooking', (booking) => {
     return api.addBooking(booking).then((response) => response.data)
 })
 
-export const getUserBookings = createAsyncThunk('booking/getUserBookings', () => {
-    return api.getUserBookings().then((response) => response.data)
+export const getTrips = createAsyncThunk('booking/getTrips', () => {
+    return api.getTrips().then((response) => response.data)
+})
+
+export const getReservations = createAsyncThunk('booking/getReservations', () => {
+    return api.getReservations().then((response) => response.data)
 })

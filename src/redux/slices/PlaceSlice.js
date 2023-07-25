@@ -2,11 +2,16 @@ import { createSlice } from "@reduxjs/toolkit"
 import { createPlace, 
         getAllPlaces, 
         removePlace, 
-        setUnavailableDates } from "../actions/PlaceActions"
+        setUnavailableDates,
+        getUserplaces,
+        favoritePlace,
+        getFavoritePlaces } from "../actions/PlaceActions"
 
 
 const initialState = {
     places: [],
+    // clientPlaces: [],
+    // favoritePlaces: [],
     loading: false,
     placeError: '', 
 }
@@ -22,7 +27,6 @@ const PlaceSlice = createSlice({
     },
 
     extraReducers: (builder) => {
-
         builder.addCase(getAllPlaces.pending, (state) => {
             state.loading = true
             state.placeError = ''
@@ -33,6 +37,24 @@ const PlaceSlice = createSlice({
             state.placeError = ''
         })
         builder.addCase(getAllPlaces.rejected, (state, action) => {
+            state.loading = false
+            state.places = []
+            state.placeError = action.error.message
+        })
+
+
+
+
+        builder.addCase(getUserplaces.pending, (state) => {
+            state.loading = true
+            state.placeError = ''
+        })
+        builder.addCase(getUserplaces.fulfilled, (state, action) => {
+            state.loading = false
+            state.places = action?.payload.data
+            state.placeError = ''
+        })
+        builder.addCase(getUserplaces.rejected, (state, action) => {
             state.loading = false
             state.places = []
             state.placeError = action.error.message
@@ -77,11 +99,11 @@ const PlaceSlice = createSlice({
 
 
         builder.addCase(setUnavailableDates.pending, (state) => {
-            // state.loading = true
+            state.loading = true
             state.placeError = ''
         })
         builder.addCase(setUnavailableDates.fulfilled, (state, action) => {
-            // state.loading = false
+            state.loading = false
             state.places = state.places.map((place) => {
                 if (place._id === action.payload.data._id ) {
                     return action.payload.data
@@ -92,9 +114,49 @@ const PlaceSlice = createSlice({
             state.placeError = ''
         })
         builder.addCase(setUnavailableDates.rejected, (state, action) => {
-            // state.loading = false
+            state.loading = false
             state.placeError = action.error.message
         })
+
+
+
+
+        builder.addCase(favoritePlace.pending, (state) => {
+            state.loading = true
+            state.placeError = ''
+        })
+        builder.addCase(favoritePlace.fulfilled, (state, action) => {
+            state.loading = false
+            state.places = state.places.map((place) => {
+                if (place._id === action.payload.data._id) {
+                    return action.payload.data
+                } else {
+                    return place
+                }
+            })
+            state.placeError = ''
+        })
+        builder.addCase(favoritePlace.rejected, (state, action) => {
+            state.loading = false
+            state.placeError = action.error.message
+        })
+
+
+        builder.addCase(getFavoritePlaces.pending, (state) => {
+            state.loading = true
+            state.placeError = ''
+        })
+        builder.addCase(getFavoritePlaces.fulfilled, (state, action) => {
+            state.loading = false
+            state.places = action?.payload.data
+            state.placeError = ''
+        })
+        builder.addCase(getFavoritePlaces.rejected, (state, action) => {
+            state.loading = false
+            state.places = []
+            state.placeError = action.error.message
+        })
+
 
     }
 })

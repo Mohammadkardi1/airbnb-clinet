@@ -8,7 +8,7 @@ const Store = configureStore({
     reducer: {
         auth: AuthSlice,
         place: PlaceSlice,
-        booking: bookingSlice
+        booking: bookingSlice,
     }
 })
 

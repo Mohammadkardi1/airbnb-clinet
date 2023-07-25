@@ -1,27 +1,25 @@
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-
-// import useFavorite from "@/app/hooks/useFavorite";
-// import { SafeUser } from "@/app/types";
-
-// import ClientOnly from "./ClientOnly";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
-
-// interface HeartButtonProps {
-//   listingId: string
-//   currentUser?: SafeUser | null
-// }
-
-const HeartButton = ({ listingId, currentUser}) => {
+import { favoritePlace } from "../redux/actions/PlaceActions";
 
 
-  // const { hasFavorited, toggleFavorite } = useFavorite({ listingId, currentUser});
+const HeartButton = ({ listingId, favorites}) => {
+  const dispatch = useDispatch()
 
-  const [favorite, setFavorite ] = useState(false)
+  const currentUser = JSON.parse(localStorage.getItem('profile'))._id
+
+  
+
+
+  const favoriteHandler = async () => {
+    await dispatch(favoritePlace(listingId))
+  }
 
   return (
     <div 
       // onClick={toggleFavorite}
-      onClick={() => setFavorite(!favorite)}
+      onClick={favoriteHandler}
       className="relative hover:opacity-80 transition cursor-pointer">
 
       <AiOutlineHeart
@@ -31,7 +29,7 @@ const HeartButton = ({ listingId, currentUser}) => {
       <AiFillHeart
         size={24}
         // className={hasFavorited ? 'fill-rose-500' : 'fill-neutral-500/70'}
-        className={favorite ? 'fill-rose-500' : 'fill-neutral-500/70'}
+        className={favorites?.includes(currentUser) ? 'fill-rose-500' : 'fill-neutral-500/70'}
         />
 
     </div>

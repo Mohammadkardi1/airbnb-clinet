@@ -1,25 +1,38 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ListingPlaceCard from "../../components/Listings/ListingPlaceCard";
 import PageLoadingModel from "../../components/Models/PageLoadingModel";
 import { useEffect, useState } from "react";
-
+import { getAllPlaces } from "../../redux/actions/PlaceActions";
 import { useParams, useSearchParams } from 'react-router-dom'; 
 import {categories_items} from '../../assets/data/DataItems'
 import EmptyState from "../../components/EmptyState";
 
 
 const Home = () => {
+  const dispatch = useDispatch()
+
   const {loading, places}  = useSelector((state) => state.place)
+
+
 
   const [filteredPlaces, setFilteredPlaces] = useState([])
 
-  
+
 
   const [searchParams, setSearchParams] = useSearchParams()
   const { category } = useParams()
 
   const activeCategory = searchParams.get('category') || "All"
 
+
+
+  useEffect(() => {
+    try {
+      dispatch(getAllPlaces())
+    } catch (error) {
+      console.log(error)
+    }
+  }, [])
 
   useEffect(() => {
     if (activeCategory === 'All') {
@@ -68,13 +81,12 @@ const Home = () => {
         <EmptyState  title={'No exact matches'} subtitle={'Try changing or removing some of your filters.'} />
         :
         <div className="mt-8 grid gap-x-6 gap-y-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-          { filteredPlaces.map((place, index) => (
-            <ListingPlaceCard key={index} place={place}/>
+          {filteredPlaces.map((place, index) => (
+            <ListingPlaceCard key={index} listing={place}/>
           ))}
         </div>
         
       }
-       
       </>
       }
     </>

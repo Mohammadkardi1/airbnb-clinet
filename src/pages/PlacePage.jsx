@@ -11,6 +11,16 @@ import ListingPerks from "../components/Listings/ListingPerks";
 // import AddressLink from "../AddressLink";
 
 import useCountries from "../hooks/useCountries";
+import ListingReview from "../components/Listings/ListingReview";
+import ReviewForm from "../components/Form/ReviewForm";
+
+
+
+
+
+
+
+
 
 
 const PlacePage = () => {
@@ -43,6 +53,8 @@ const PlacePage = () => {
       loading  ?
       <PageLoadingModel/>
     :
+    <>
+    {place  &&
       <div className="mt-8">
 
 
@@ -63,7 +75,7 @@ const PlacePage = () => {
         
 
       <div className="mt-8 mb-8 grid gap-8 grid-cols-1 md:grid-cols-[2fr_1fr]">
-      <div className="flex flex-col gap-8 mt-20">
+      <div className="flex flex-col gap-8 mt-20 static z-[1]">
         <div className="flex flex-col gap-2">
           <div 
             className="text-xl font-semibold flex flex-row items-center gap-2">
@@ -103,35 +115,38 @@ const PlacePage = () => {
         </div>
 
 
-
+        {place?.perks?.length > 0  &&
+        <>
         <hr />
         <div>
             <h2 className="font-semibold text-2xl mb-3">Perks</h2>
             <div className=" grid grid-cols-2 gap-2">
-
             {
               place?.perks?.map((name, index) => (
                 <ListingPerks key={index} name={name}/>
               ))
             }
             </div>
-
         </div>
+        </>
+        }
+        {place?.extraInfo?.replace(/\s+/g, '') &&
+        <>
+          <hr />
+          <div>
+              <h2 className="font-semibold text-2xl mb-3">Extra info</h2>
+              <p className="text-lg font-light text-neutral-500">
+                {place?.extraInfo}
+              </p>
+          </div>
+        </>
+        }
 
-        <hr />
-        <div>
-            <h2 className="font-semibold text-2xl mb-3">Extra info</h2>
-            <p className="text-lg font-light text-neutral-500">
-              {place?.extraInfo}
-            </p>
-        </div>
 
         <hr />
 
 
         <Map center={coordinates} />
-
-
 
 
       </div>
@@ -140,9 +155,36 @@ const PlacePage = () => {
 
       <BookingForm place={place} />
 
-      </div>
 
       </div>
+
+
+
+        <div className="mt-12">
+          <h2 className="font-semibold text-2xl mb-4">Reviews</h2>
+          <div className=" space-y-8">
+            {
+                place?.reviews?.map((review, index) => (
+                  <ListingReview key={index} review={review}/>
+                ))
+            }
+          </div>
+        </div>
+
+
+        <ReviewForm/>
+
+
+          {/* <div className="col-lg-12 mt-5  text-center">
+              <h2 className="related__title">
+                  You might also like
+              </h2>
+          </div>
+          <ProductList data={relatedProducts}/> */}
+
+      </div>
+    }
+    </>
     }
     </>
   );

@@ -27,8 +27,7 @@ const ListingUserPlace = ({place}) => {
 
     const editPlaceHandler = (event, id) => {
         event.stopPropagation()
-
-        console.log('editPlaceHandler', id)
+        navigate(`/account/editPlace/${id}`)
         }
 
 

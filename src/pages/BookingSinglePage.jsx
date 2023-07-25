@@ -10,17 +10,12 @@ const BookingPage = () => {
   const [booking, setBooking] = useState(null)
   const { bookings, loading } = useSelector(state => state.booking)
 
-
+  console.log('booking', booking)
   useEffect(() => {
     window.scrollTo(0, 0)
     const foundBooking  = bookings.find(booking => booking._id === id);
     setBooking(foundBooking)
   }, [bookings])
-
-
-//   if (!booking) {
-//     return '';
-//   }
 
 
 
@@ -41,7 +36,7 @@ const BookingPage = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
             </svg>
-            {booking?.place?.address}
+            {booking?.place?.location?.region}, ${booking?.place?.location?.label}
         </a>
         <div className="bg-gray-200 p-6 my-6 rounded-2xl flex items-center justify-between">
             <div>

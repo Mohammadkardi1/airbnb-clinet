@@ -8,9 +8,9 @@ import { getAllPlaces } from './redux/actions/PlaceActions';
 import { getAllBookings } from './redux/actions/BookingActions';
 import './App.css';
 
+
 function App() {
   const dispatch = useDispatch()
-
 
 
 
@@ -22,9 +22,6 @@ function App() {
     } catch (error) {
       console.log(error)
     }
-
-
-
   }, [])
 
   

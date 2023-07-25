@@ -2,54 +2,57 @@ import { Link } from "react-router-dom"
 import HeartButton from "../HeartButton"
 
 
-const ListingPlaceCard= ({place}) => {
+const ListingPlaceCard= ({listing, onAction, handleAction, actionLabel}) => {
 
     
 
   return (
     <>
-    { place && 
+    { listing && 
       <div className="relative">
 
         <div className="absolute z-10 top-3 right-3">
             <HeartButton 
-            //   listingId={place.id} 
-            // currentUser={currentUser}
+              listingId={listing?._id} 
+              favorites = {listing?.favorites}
+              // currentUser={currentUser}
             />
         </div>
 
 
-        <Link to={`/place/${place?._id}`} 
+        <Link to={`/place/${listing?._id}`} 
           className="col-span-1 cursor-pointer group">
             
           <div className="flex flex-col gap-2 w-full">
             <div className="aspect-square w-full overflow-hidden rounded-xl">
               <img
                 className="object-cover h-full w-full group-hover:scale-110 transition"
-                src={place?.photos[0]?.url}
+                src={listing?.photos[0]?.url}
                 alt="Listing"
               />
 
               
             </div>
             <h1 className="font-semibold text-lg">
-              {place?.title}
+              {listing?.title}
             </h1>
             <p className="font-light text-neutral-500">
-              {`${place?.location?.region}, ${place?.location?.label}`}
+              {`${listing?.location?.region}, ${listing?.location?.label}`}
             </p>
 
-            <p className="font-semibold">$ {place?.price} per night </p>
+            <p className="font-semibold">$ {listing?.price} per night </p>
 
 
 
             {/* {onAction && actionLabel && (
-              <Button
-                disabled={disabled}
-                small
-                label={actionLabel} 
-                onClick={handleCancel}
-              />
+              <button
+                // disabled={disabled}
+                // small
+                // label={actionLabel} 
+                onClick={handleAction}
+              >
+                {actionLabel}
+              </button>
             )} */}
           </div>
         </Link>

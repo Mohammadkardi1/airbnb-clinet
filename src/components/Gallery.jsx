@@ -46,8 +46,8 @@ const Gallery = ({place}) => {
 
         <div className="absolute top-5 right-5">
          <HeartButton
-           // listingId={id}
-           // currentUser={currentUser}
+           listingId={place?._id}
+           favorites = {place?.favorites}
          />
        </div>
        <button onClick={() => setShowAllPhotos(true)} className="flex gap-1 absolute top-2 left-2 py-2 px-4 bg-white rounded-2xl shadow-md shadow-gray-500">

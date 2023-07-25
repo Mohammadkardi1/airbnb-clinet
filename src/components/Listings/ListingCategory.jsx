@@ -15,7 +15,7 @@ const CategoryView = ({ label }) => {
   return ( 
     <>
     {
-      label &&
+      label && category &&
       <div className="flex flex-row items-center gap-4">
         {/* <Icon size={40} className="text-neutral-600" /> */}
         {category?.icon}

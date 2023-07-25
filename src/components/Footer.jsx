@@ -19,7 +19,7 @@ const Footer = () => {
 
 
         <button onClick={clickHandler}>
-          Display - Places 
+          Footer - Footer - Footer - Footer - 
         </button>
 
     </div>
