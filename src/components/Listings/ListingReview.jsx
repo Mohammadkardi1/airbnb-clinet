@@ -24,7 +24,7 @@ const ListingReview = ({review}) => {
         </div>
 
 
-        <div className="">
+        <div>
             <h6 className='text-xl font-semibold'>
                 {review?.user?.username}
             </h6>
@@ -38,7 +38,7 @@ const ListingReview = ({review}) => {
         <div></div>
 
 
-        <div className="">
+        <div>
             {review?.comment}
         </div>
 

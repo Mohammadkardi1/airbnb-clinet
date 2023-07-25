@@ -19,12 +19,15 @@ export const googleLogin = (userInfo) => API.post('/api/auth/googleLogin', userI
 
 
 export const getAllPlaces = () => API.get('/api/place/allPlaces')
+export const getPlace = (id) => API.get(`/api/place/allPlaces/${id}`)
+
 export const getUserplaces = () => API.get('/api/place/userPlaces' )
 export const createPlace = (placeInfo) => API.post('/api/place/addPlace', placeInfo)
 export const removePlace = (id) => API.delete(`/api/place/removePlace/${id}`)
 export const setUnavailableDates = (id, timestamps) => API.patch(`/api/place/unavailableDates/${id}`, {timestamps})
 export const favoritePlace = (id) => API.patch(`/api/place/favoritePlace/${id}`)
 export const getFavoritePlaces = () => API.get(`/api/place/getFavoritePlaces`)
+export const reviewPlace = (id, review) => API.post(`/api/place/reviewPlace/${id}`, review)
 
 
 

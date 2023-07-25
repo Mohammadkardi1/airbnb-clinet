@@ -13,7 +13,11 @@ const HeartButton = ({ listingId, favorites}) => {
 
 
   const favoriteHandler = async () => {
-    await dispatch(favoritePlace(listingId))
+    try {
+      await dispatch(favoritePlace(listingId))
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (

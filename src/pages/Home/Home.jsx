@@ -27,6 +27,7 @@ const Home = () => {
 
 
   useEffect(() => {
+    console.log("Home component is ran")
     try {
       dispatch(getAllPlaces())
     } catch (error) {

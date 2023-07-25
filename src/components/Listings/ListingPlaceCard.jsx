@@ -1,11 +1,20 @@
 import { Link } from "react-router-dom"
 import HeartButton from "../HeartButton"
+import StarRateIcon from '@mui/icons-material/StarRate';
 
 
 const ListingPlaceCard= ({listing, onAction, handleAction, actionLabel}) => {
 
-    
+  console.log('listing', listing)
 
+
+  const reviewSum = listing?.reviews?.reduce((accumulator, currentValue) => 
+      accumulator + currentValue.rating, 0)
+
+  const reviewAvg = listing?.reviews?.length > 0 ? (reviewSum / listing?.reviews?.length).toFixed(2) : 0;
+
+
+  console.log("listing?.reviews?.length", listing?.reviews?.length)
   return (
     <>
     { listing && 
@@ -33,9 +42,24 @@ const ListingPlaceCard= ({listing, onAction, handleAction, actionLabel}) => {
 
               
             </div>
-            <h1 className="font-semibold text-lg">
-              {listing?.title}
-            </h1>
+            <div className="flex justify-between">
+              <h1 className="font-semibold text-lg">
+                {listing?.title}
+              </h1>
+              
+              <div className="flex items-center gap-1 text-lg ">
+              
+                <StarRateIcon
+                    // size={24}
+                    className=" text-black"/>
+                  <p>
+                  {reviewAvg }
+                  </p>
+                  
+              </div>
+
+            </div>
+
             <p className="font-light text-neutral-500">
               {`${listing?.location?.region}, ${listing?.location?.label}`}
             </p>

@@ -172,7 +172,7 @@ const PlacePage = () => {
         </div>
 
 
-        <ReviewForm/>
+        <ReviewForm placeID={place?._id}/>
 
 
           {/* <div className="col-lg-12 mt-5  text-center">
