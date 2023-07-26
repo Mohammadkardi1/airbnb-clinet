@@ -2,13 +2,13 @@ import { createSlice } from "@reduxjs/toolkit"
 import { addBooking,
         getAllBookings,
         getTrips,
-        getReservations } from "../actions/BookingActions"
+        getBookingsOnProperties } from "../actions/BookingActions"
 
 
 const initialState = {
     bookings: [],
-    trips: [],
-    reservations: [],
+    // trips: [],
+    // reservations: [],
     loading: false,
     bookingError: ''
 }
@@ -42,9 +42,7 @@ const bookingSlice = createSlice({
         })
         builder.addCase(addBooking.fulfilled, (state, action) => {
             state.loading = false
-            console.log('action.payload.data', action.payload.data)
             state.bookings.push(action.payload.data)
-            console.log('state.bookings', state.bookings)
             state.bookingError = ''
         })
         builder.addCase(addBooking.rejected, (state, action) => {
@@ -64,32 +62,31 @@ const bookingSlice = createSlice({
         })
         builder.addCase(getTrips.fulfilled, (state, action) => {
             state.loading = false
-            state.trips = action?.payload.data
+            state.bookings = action?.payload.data
             state.bookingError = ''
         })
         builder.addCase(getTrips.rejected, (state, action) => {
             state.loading = false
-            state.trips = []
+            state.bookings = []
             state.bookingError = action.error.message
         })
 
 
 
 
-
-        builder.addCase(getReservations.pending, (state) => {
+        //getReservations -> getBookingsOnProperties
+        builder.addCase(getBookingsOnProperties.pending, (state) => {
             state.loading = true
             state.bookingError = ''
         })
-        builder.addCase(getReservations.fulfilled, (state, action) => {
+        builder.addCase(getBookingsOnProperties.fulfilled, (state, action) => {
             state.loading = false
-            state.reservations = action?.payload.data
+            state.bookings = action?.payload.data
             state.bookingError = ''
         })
-        
-        builder.addCase(getReservations.rejected, (state, action) => {
+        builder.addCase(getBookingsOnProperties.rejected, (state, action) => {
             state.loading = false
-            state.reservations = []
+            state.bookings = []
             state.bookingError = action.error.message
         })
         

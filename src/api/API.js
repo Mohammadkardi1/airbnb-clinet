@@ -18,16 +18,24 @@ export const resendVerification = (email) => API.get(`/api/auth/resendVerificati
 export const googleLogin = (userInfo) => API.post('/api/auth/googleLogin', userInfo)
 
 
+
+
 export const getAllPlaces = () => API.get('/api/place/allPlaces')
-export const getPlace = (id) => API.get(`/api/place/allPlaces/${id}`)
+export const getPlace = (id) => API.get(`/api/place/getPlace/${id}`)
 
 export const getUserplaces = () => API.get('/api/place/userPlaces' )
 export const createPlace = (placeInfo) => API.post('/api/place/addPlace', placeInfo)
-export const removePlace = (id) => API.delete(`/api/place/removePlace/${id}`)
-export const setUnavailableDates = (id, timestamps) => API.patch(`/api/place/unavailableDates/${id}`, {timestamps})
-export const favoritePlace = (id) => API.patch(`/api/place/favoritePlace/${id}`)
+
+
+export const removePlace = (placeID) => API.delete(`/api/place/removePlace/${placeID}`)
+
+
+
+export const setUnavailableDates = (placeID, timestamps) => API.patch(`/api/place/unavailableDates/${placeID}`, {timestamps})
+export const favoritePlace = (placeID) => API.patch(`/api/place/favoritePlace/${placeID}`)
 export const getFavoritePlaces = () => API.get(`/api/place/getFavoritePlaces`)
-export const reviewPlace = (id, review) => API.post(`/api/place/reviewPlace/${id}`, review)
+export const reviewPlace = (placeID, review) => API.post(`/api/place/reviewPlace/${placeID}`, review)
+export const editPlace = (placeID, place) => API.patch(`/api/place/editPlace/${placeID}`, place)
 
 
 
@@ -35,7 +43,8 @@ export const reviewPlace = (id, review) => API.post(`/api/place/reviewPlace/${id
 export const getAllBookings = () => API.get('/api/booking/allBookings')
 export const addBooking = (bookingInfo) => API.post('/api/booking/addBooking', bookingInfo)
 export const getTrips = () => API.get('/api/booking/trips' )
-export const getReservations = () => API.get('/api/booking/reservations' )
+export const getBookingsOnProperties = () => API.get('/api/booking/bookingsOnProperties' )
+
 
 
 

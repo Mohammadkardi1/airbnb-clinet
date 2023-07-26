@@ -13,7 +13,7 @@ import PlacePage from '../pages/PlacePage'
 import BookingSinglePage from '../pages/BookingSinglePage'
 import EmailVerify from '../components/EmailVerify'
 import PlaceForm from '../components/Form/PlaceForm'
-import EditPlace from '../pages/editPlace/EditPlace'
+// import EditPlace from '../pages/editPlace/EditPlace'
 import Bookings from '../pages/bookings/Bookings'
 import Trips from '../pages/trips/Trips'
 import Favorites from '../pages/favorites/Favorites'
@@ -44,7 +44,7 @@ const Routers = () => {
 
           </Route>
           <Route path='account/places/new' element={<PlaceForm/>}/>
-          <Route path='account/editPlace/:id' element={<EditPlace/>}/>
+          {/* <Route path='account/editPlace/:id' element={<EditPlace/>}/> */}
 
           <Route path='booking/:id' element={<BookingSinglePage/>}/>
           <Route path='place/:id' element={<PlacePage/>}/>

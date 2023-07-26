@@ -23,8 +23,9 @@ const UserPlaces =  ({listings}) => {
           <ListingPlaceCard
             key={listing?._id}
             listing={listing}
+            activateActions={true}
             // actionId={listing.id}
-            // onAction={onDelete}
+            // activateActions={onDelete}
             // disabled={deletingId === listing.id}
             // actionLabel="Delete property"
             // currentUser={currentUser}

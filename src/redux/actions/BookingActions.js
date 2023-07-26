@@ -13,6 +13,6 @@ export const getTrips = createAsyncThunk('booking/getTrips', () => {
     return api.getTrips().then((response) => response.data)
 })
 
-export const getReservations = createAsyncThunk('booking/getReservations', () => {
-    return api.getReservations().then((response) => response.data)
+export const getBookingsOnProperties = createAsyncThunk('booking/getBookingsOnProperties', () => {
+    return api.getBookingsOnProperties().then((response) => response.data)
 })

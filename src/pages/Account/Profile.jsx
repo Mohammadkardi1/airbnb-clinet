@@ -3,14 +3,16 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { AuthActions } from '../../redux/slices/AuthSlice'
+import { getUserplaces } from '../../redux/actions/PlaceActions';
+import { getBookingsOnProperties } from '../../redux/actions/BookingActions';
 
 
 const Profile = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const [userplaces, setUserplaces] = useState()
-    const [userBookings, setUserBookings] = useState()
+    // const [userplaces, setUserplaces] = useState()
+    // const [userBookings, setUserBookings] = useState()
 
     const { user } = useSelector(state => state.auth)
     const { places } = useSelector(state => state.place)
@@ -21,10 +23,17 @@ const Profile = () => {
 
 
     useEffect(() => {
-        setUserBookings(bookings.filter(booking => booking.user === user._id))
-        setUserplaces(places.filter(place => place.owner === user._id))
+        // setUserBookings(bookings?.filter(booking => booking.user === user._id))
+        // setUserplaces(places?.filter(place => place.owner._id === user._id))
 
-      }, [bookings])
+        dispatch(getUserplaces())
+        dispatch(getBookingsOnProperties())
+
+      }, [])
+
+
+
+
     const logout = async () => {
         try {
             await dispatch(AuthActions.logout())
@@ -55,13 +64,13 @@ const Profile = () => {
             </div>
 
             <div className='flex justify-between'>
-                <p>NO. your places:</p>
-                <p>{userplaces?.length}</p>
+                <p>NO. your properties:</p>
+                <p>{places?.length}</p>
             </div>
 
             <div className='flex justify-between'>
-                <p>NO. your bookings:</p>
-                <p>{userBookings?.length}</p>
+                <p>NO. Bookings on your own properties:</p>
+                <p>{bookings?.length}</p>
             </div>
 
             <div className='pt-8 space-y-4'>

@@ -29,12 +29,12 @@ const menu_items = [
 
     {
         path: 'places', 
-        displayName: 'My places'
-    },
-    {
-        path: 'properties', 
         displayName: 'My properties'
     },
+    // {
+    //     path: 'bookings', 
+    //     displayName: 'My properties'
+    // },
     {
         path: 'Airbnb', 
         displayName: 'Airbnb your home'

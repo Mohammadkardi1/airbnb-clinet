@@ -13,6 +13,7 @@ const ListingBookingCard= ({ listing }) => {
       <div className="relative">
 
 
+
         <Link to={`/place/${listing?.place?._id}`} 
           className="col-span-1 cursor-pointer group">
             

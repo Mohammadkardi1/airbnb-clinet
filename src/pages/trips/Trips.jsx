@@ -8,33 +8,31 @@ import UserTrips from './UserTrips'
 
 
 
-const Page = () => {
+const Trips = () => {
 
 
   const dispatch = useDispatch()
-  const {loading, trips} = useSelector(state => state.booking)
+  const {loading, bookings} = useSelector(state => state.booking)
+
+
+  console.log('trips', bookings)
 
   useEffect(() => {
     dispatch(getTrips())
+
   }, [])
 
 
-  const clickHandler = () => {
-    console.log('trips', trips)
-  }
 
   return (
     <>
-      <div onClick={clickHandler}>
-          Click here
-      </div>
 
       {
       loading  ?
           <PageLoadingModel/>
       :
       <>
-      {trips.length === 0 ?
+      {bookings?.length === 0 ?
           <EmptyState
               title={'No trips found'} 
               subtitle={'Looks like you have not reserved any trips.'} />
@@ -55,7 +53,7 @@ const Page = () => {
           </div>
 
 
-          <UserTrips listings={trips}/>
+          <UserTrips listings={bookings}/>
 
 
       </>
@@ -69,4 +67,4 @@ const Page = () => {
     )
 }
 
-export default Page
+export default Trips

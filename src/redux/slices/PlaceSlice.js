@@ -7,11 +7,13 @@ import { createPlace,
         favoritePlace,
         getFavoritePlaces, 
         reviewPlace,
-        getPlace} from "../actions/PlaceActions"
+        getPlace,
+        editPlace} from "../actions/PlaceActions"
 
 
 const initialState = {
     places: [],
+    // place: [],
     // clientPlaces: [],
     // favoritePlaces: [],
     loading: false,
@@ -45,13 +47,14 @@ const PlaceSlice = createSlice({
         })
 
 
+
         builder.addCase(getPlace.pending, (state) => {
             state.loading = true
             state.placeError = ''
         })
         builder.addCase(getPlace.fulfilled, (state, action) => {
             state.loading = false
-            state.places = action?.payload.data
+            state.places = [action?.payload.data]
             state.placeError = ''
         })
         builder.addCase(getPlace.rejected, (state, action) => {
@@ -120,13 +123,15 @@ const PlaceSlice = createSlice({
         })
         builder.addCase(setUnavailableDates.fulfilled, (state, action) => {
             state.loading = false
-            state.places = state.places.map((place) => {
-                if (place._id === action.payload.data._id ) {
-                    return action.payload.data
-                } else {
-                    return place
-                }
-            })
+            state.places = [action?.payload.data]
+
+            // state.places = state.places.map((place) => {
+            //     if (place._id === action.payload.data._id ) {
+            //         return action.payload.data
+            //     } else {
+            //         return place
+            //     }
+            // })
             state.placeError = ''
         })
         builder.addCase(setUnavailableDates.rejected, (state, action) => {
@@ -158,6 +163,34 @@ const PlaceSlice = createSlice({
         })
 
 
+
+
+
+        builder.addCase(editPlace.pending, (state) => {
+            state.loading = true
+            state.placeError = ''
+        })
+        builder.addCase(editPlace.fulfilled, (state, action) => {
+            state.loading = false
+            // state.places = state.places.map((place) => {
+            //     if (place._id === action.payload.data._id) {
+            //         return action.payload.data
+            //     } else {
+            //         return place
+            //     }
+            // })
+            state.placeError = ''
+        })
+        builder.addCase(editPlace.rejected, (state, action) => {
+            state.loading = false
+            state.placeError = action.error.message
+        })
+
+
+
+
+        
+
         builder.addCase(getFavoritePlaces.pending, (state) => {
             state.loading = true
             state.placeError = ''
@@ -176,24 +209,26 @@ const PlaceSlice = createSlice({
 
 
 
-
+        // Checked
         builder.addCase(reviewPlace.pending, (state) => {
             state.loading = true
             state.placeError = ''
         })
         builder.addCase(reviewPlace.fulfilled, (state, action) => {
             state.loading = false
-            state.places = state.places.map((place) => {
-                if (place._id === action.payload.data._id) {
-                    return action.payload.data
-                } else {
-                    return place
-                }
-            })
+            state.places = [action?.payload.data]
+            // state.places = state.places.map((place) => {
+            //     if (place._id === action.payload.data._id) {
+            //         return action.payload.data
+            //     } else {
+            //         return place
+            //     }
+            // })
             state.placeError = ''
         })
         builder.addCase(reviewPlace.rejected, (state, action) => {
             state.loading = false
+            state.places = []
             state.placeError = action.error.message
         })
 

@@ -7,7 +7,7 @@ import { favoritePlace } from "../redux/actions/PlaceActions";
 const HeartButton = ({ listingId, favorites}) => {
   const dispatch = useDispatch()
 
-  const currentUser = JSON.parse(localStorage.getItem('profile'))._id
+  const currentUser = JSON.parse(localStorage.getItem('profile'))?._id
 
   
 

@@ -9,6 +9,8 @@ import { setUnavailableDates } from "../../redux/actions/PlaceActions";
 import { useDispatch } from "react-redux";
 import { addBooking } from "../../redux/actions/BookingActions";
 import PageLoadingModel from "../Models/PageLoadingModel";
+import { MessageModel } from "../Models/MessageModel";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -16,6 +18,7 @@ import PageLoadingModel from "../Models/PageLoadingModel";
 
 const BookingForm = ({place}) => {  
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const {register,  handleSubmit, formState: {errors}, reset} = useForm()
   const {user} = useSelector(state => state.auth)
   const {loading} = useSelector(state => state.booking)
@@ -23,6 +26,7 @@ const BookingForm = ({place}) => {
   const [numberOfNights, setNumberOfNights] = useState(0)
   const today = new Date()
 
+  const [isModelOpen, setIsModelOpen] = useState(false)
 
 
   const currentDate = new Date();
@@ -91,38 +95,44 @@ const BookingForm = ({place}) => {
 
 
   const handleBookingPlace = async (data) => {
-    const datesArray = eachDayOfInterval({ start: date[0].startDate, end: date[0].endDate })
-    const timestampsArray = datesArray.map(date => date.getTime())
-    const submitedData = {...data,
-          price: place?.price * timestampsArray.length,
-          numberOfNights: timestampsArray.length,
-          user: user?._id, 
-          place: place?._id,
-          checkIn:date[0]?.startDate.getTime(), 
-          checkOut:date[0]?.endDate.getTime()}
-    try {
-      await dispatch(addBooking(submitedData))
-      await dispatch(setUnavailableDates({id: place?._id, timestamps: timestampsArray }))
-      reset()
-      setInitialDate()
-    } catch (error) {
-      console.log('something went error', error)
-    }
-  }
 
-
-
-  const setNextDate = () => {
-    const newDate = new Date(date[0].endDate)
-    while (true) {
-      newDate.setDate(newDate.getDate() + 1)
-      const isNewDateInDisabledArray = disabledDates?.some((date) => date.getTime() === newDate.getTime())
-      if (!isNewDateInDisabledArray) {
-        setDate([{ ...date[0], startDate: newDate, endDate: newDate }])
-        break
+    if (!JSON.parse(localStorage.getItem('profile'))?._id ) {
+      setIsModelOpen(true)
+    } else {
+      const datesArray = eachDayOfInterval({ start: date[0].startDate, end: date[0].endDate })
+      const timestampsArray = datesArray.map(date => date.getTime())
+      const submitedData = {...data,
+            price: place?.price * timestampsArray.length,
+            numberOfNights: timestampsArray.length,
+            user: user?._id, 
+            place: place?._id,
+            checkIn:date[0]?.startDate.getTime(), 
+            checkOut:date[0]?.endDate.getTime()}
+      try {
+        await dispatch(addBooking(submitedData))
+        await dispatch(setUnavailableDates({placeID: place?._id, timestamps: timestampsArray }))
+        reset()
+        setInitialDate()
+        // navigate('/account/trips')
+      } catch (error) {
+        console.log('something went error', error)
       }
     }
   }
+
+
+
+  // const setNextDate = () => {
+  //   const newDate = new Date(date[0].endDate)
+  //   while (true) {
+  //     newDate.setDate(newDate.getDate() + 1)
+  //     const isNewDateInDisabledArray = disabledDates?.some((date) => date.getTime() === newDate.getTime())
+  //     if (!isNewDateInDisabledArray) {
+  //       setDate([{ ...date[0], startDate: newDate, endDate: newDate }])
+  //       break
+  //     }
+  //   }
+  // }
 
 
 
@@ -137,7 +147,7 @@ const BookingForm = ({place}) => {
       </div>
 
 
-      <div className=" w-full z-10">
+      <div className=" w-full">
         <DateRange
             editableDateInputs={true}
             onChange={(item) => setDate([item.selection])}
@@ -229,7 +239,7 @@ const BookingForm = ({place}) => {
 
 
 
-      <button className="primary w-full mt-4" disabled={loading}>
+      <button className="primary w-full mt-4 py-4" disabled={loading}>
         {
             loading ? 
                 <PageLoadingModel size={"2em"} padding={"0"} color={"#4a148c"}/>
@@ -239,11 +249,16 @@ const BookingForm = ({place}) => {
             </div>
         }
       </button>
-
-
-
-
     </form>
+
+
+    <MessageModel
+        isModelOpen={isModelOpen} 
+        setIsModelOpen={setIsModelOpen} 
+        message="Please login."
+        />
+    
+    
     </>
   );
 }

@@ -13,11 +13,7 @@ const Home = () => {
 
   const {loading, places}  = useSelector((state) => state.place)
 
-
-
   const [filteredPlaces, setFilteredPlaces] = useState([])
-
-
 
   const [searchParams, setSearchParams] = useSearchParams()
   const { category } = useParams()
@@ -25,6 +21,7 @@ const Home = () => {
   const activeCategory = searchParams.get('category') || "All"
 
 
+  console.log('places', places)
 
   useEffect(() => {
     console.log("Home component is ran")
@@ -35,6 +32,10 @@ const Home = () => {
     }
   }, [])
 
+
+
+
+
   useEffect(() => {
     if (activeCategory === 'All') {
       setFilteredPlaces(places)
@@ -42,6 +43,10 @@ const Home = () => {
       setFilteredPlaces(places.filter(place => place.category === activeCategory))
     }
   }, [places])
+
+
+
+
 
 
   const handleClick = (label) => {
@@ -82,7 +87,7 @@ const Home = () => {
         <EmptyState  title={'No exact matches'} subtitle={'Try changing or removing some of your filters.'} />
         :
         <div className="mt-8 grid gap-x-6 gap-y-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-          {filteredPlaces.map((place, index) => (
+          {filteredPlaces?.map((place, index) => (
             <ListingPlaceCard key={index} listing={place}/>
           ))}
         </div>

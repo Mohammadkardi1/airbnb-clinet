@@ -1,9 +1,9 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useSearchParams} from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { createPlace } from "../../redux/actions/PlaceActions";
+import { createPlace, editPlace, getPlace } from "../../redux/actions/PlaceActions";
 import { PlaceActions } from "../../redux/slices/PlaceSlice";
 import {perk_items} from '../../assets/data/DataItems'
 import ListingPerks from "../Listings/ListingPerks";
@@ -12,6 +12,10 @@ import useCountries from '../../hooks/useCountries'
 import PageLoadingModel from "../Models/PageLoadingModel";
 // import "flag-icon-css/css/flag-icon.min.css";
 
+
+
+
+    
 
 const preInput = (header,description) => {
     return (
@@ -23,14 +27,49 @@ const preInput = (header,description) => {
 }
 
 const PlaceForm = () => {
-    const dispatch = useDispatch()
-    const { register, handleSubmit, formState: {errors}, setValue, watch } = useForm()
+    const [searchParams, setSearchParams] = useSearchParams()
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const { register, handleSubmit, formState: {errors}, setValue, reset, watch } = useForm({})
     const [perks, setPerks] = useState([]);
-    const { loading } = useSelector(state => state.place)
+    const { loading, place } = useSelector(state => state.place)
     const { getAll } = useCountries()
 
+    const isUpdated = Boolean(searchParams.get('placeId'));
+
     
+    
+    useEffect(() => {
+        if (isUpdated) {
+            try {
+                dispatch(getPlace(searchParams.get('placeId')))
+            } catch (error) {
+                console.log(error)
+            }
+        }
+    }, [])
+
+    useEffect( () => {
+        if (isUpdated) {
+            try {
+                setValue('title', place?.title)
+                setValue('description', place?.description)
+                setValue('extraInfo', place?.extraInfo)
+                setValue('maxGuests', place?.maxGuests)
+                setValue('rooms', place?.rooms)
+                setValue('bathrooms', place?.bathrooms)
+                setValue('price', place?.price)
+                setValue('category', place?.category)
+                setValue('location', place?.location)
+                setPerks(place?.perks)   
+            } catch (error) {
+                console.log(error)
+            }
+        }
+    }, [place])
+
+
+
     const perkClick = (ev) => {
         const {checked,name} = ev.target;
         if (checked) {
@@ -41,44 +80,47 @@ const PlaceForm = () => {
       }
 
     const savePlace = async (data) => {
-        try {
-            dispatch(PlaceActions.setLoading(true))
-            const uploadedImagesURL = []
-            for (let i = 0; i < data.photos.length; i++) {
-                const image = new FormData()
-                image.append("file", data.photos[i])
-                image.append("upload_preset", "airbnb")
-                const uploadRes = await axios.post(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`,image)
-                const { url, public_id } = uploadRes.data
-                uploadedImagesURL.push({url, public_id})
+        console.log(data)
+        if (!isUpdated) {
+            try {
+                dispatch(PlaceActions.setLoading(true))
+                const uploadedImagesURL = []
+                for (let i = 0; i < data.photos.length; i++) {
+                    const image = new FormData()
+                    image.append("file", data.photos[i])
+                    image.append("upload_preset", "airbnb")
+                    const uploadRes = await axios.post(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`,image)
+                    const { url, public_id } = uploadRes.data
+                    uploadedImagesURL.push({url, public_id})
+                }
+                dispatch(createPlace({
+                        ...data, 
+                        perks, 
+                        photos: uploadedImagesURL,
+                        owner: JSON.parse(localStorage.getItem('profile'))._id
+                    }))
+                reset()
+                navigate('/account/places')
+            } catch (error) {
+                console.log("Error when uploading the image", error)
             }
-            dispatch(createPlace({
-                    ...data, 
-                    perks, 
-                    photos: uploadedImagesURL,
-                    owner: JSON.parse(localStorage.getItem('profile'))._id
-                }))
-            navigate('/account/places')
-        } catch (error) {
-            console.log("Error when uploading the image", error)
+        } else {
+            console.log({...data, perks})
+
+            try {
+                dispatch(editPlace({placeID: searchParams.get('placeId'), 
+                place: {...data, perks}}))
+                reset()
+                navigate('/account/places')
+            } catch (error) {
+                console.log(error)
+            }
+
+
+
+            console.log('update place')
         }
-
   }
-
-
-
-
-    // useEffect(() => {
-    //     if (!id) {
-    //     return;
-    //     }
-    //     axios.get('/places/'+id).then(response => {
-    //     const {data} = response;
-    //     setAddedPhotos(data.photos);
-    //     setPerks(data.perks);
-    //     });
-    // }, [id]);
-
 
 
 
@@ -89,7 +131,9 @@ const PlaceForm = () => {
         <form onSubmit={handleSubmit(savePlace)} className='space-y-6 my-12'>
             <div>
                 {preInput('Title', 'Title for your place. should be short and catchy as in advertisement')}
-                <input type="text" placeholder="e.g. My lovely apt"
+                <input 
+                    type="text" 
+                    placeholder="e.g. My lovely apt"
                     {...register('title', {
                         required: "Title of the place is required"
                     })}
@@ -161,6 +205,7 @@ const PlaceForm = () => {
                 </p>
             </div>
 
+            {!searchParams.get('placeId') && 
             <div>
                 {preInput('Photos','more = better')}
                 <label className="h-32 cursor-pointer flex items-center gap-1 justify-center border border-gray-400 bg-transparent rounded-2xl p-2 text-2xl text-gray-600">
@@ -175,7 +220,7 @@ const PlaceForm = () => {
                         {errors.photos?.message}.
                 </p>
             </div>
-            
+            }
             
 
             
@@ -185,7 +230,7 @@ const PlaceForm = () => {
                     {/* <Perks perks={perks} setPerks={setPerks} /> */}
                     {perk_items.map((perk, index) => (
                         <label key={index} className="border border-gray-400 p-4 flex rounded-2xl gap-2 items-center cursor-pointer hover:bg-brand hover:text-white hover:border-none">
-                            <input type="checkbox" checked={perks.includes(perk.name)} name={perk.name} onChange={perkClick}/>
+                            <input type="checkbox" checked={perks?.includes(perk.name)} name={perk.name} onChange={perkClick}/>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                 <path strokeLinecap="round" strokeLinejoin="round" d={perk.d} />
                             </svg>
@@ -273,12 +318,12 @@ const PlaceForm = () => {
 
 
 
-            <button className="primary  my-4 w-full" type="submit" disabled={loading}>
+            <button className="primary py-4 my-4 w-full" type="submit" disabled={loading}>
                 {
                     loading ? 
                         <PageLoadingModel size={"2em"} padding={"0"} color={"#4a148c"}/>
                     :
-                    "Save"
+                    isUpdated ? "Update" : "Submit"
                 }
             </button>
         </form>

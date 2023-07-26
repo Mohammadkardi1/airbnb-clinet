@@ -17,8 +17,8 @@ function App() {
   useEffect(() => {
     try {
       dispatch(AuthActions.loginByToken())
-      dispatch(getAllPlaces())
-      dispatch(getAllBookings())
+      // dispatch(getAllPlaces())
+      // dispatch(getAllBookings())
     } catch (error) {
       console.log(error)
     }

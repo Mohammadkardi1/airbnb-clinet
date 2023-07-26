@@ -2,17 +2,17 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import EmptyState from '../../components/EmptyState'
 import PageLoadingModel from '../../components/Models/PageLoadingModel'
-import { getReservations } from "../../redux/actions/BookingActions"
+import { getBookingsOnProperties } from "../../redux/actions/BookingActions"
 import UserBookings from './UserBookings'
 
 
 const Bookings = () => {
 
   const dispatch = useDispatch()
-  const {loading, reservations} = useSelector(state => state.booking)
+  const {loading, bookings} = useSelector(state => state.booking)
 
   useEffect(() => {
-    dispatch(getReservations())
+    dispatch(getBookingsOnProperties())
   }, [])
 
 
@@ -20,27 +20,25 @@ const Bookings = () => {
 
   return (
     <>
-
-
     {
     loading  ?
         <PageLoadingModel/>
     :
     <>
-    {reservations.length === 0 ?
+    {bookings.length === 0 ?
         <EmptyState  
-            title={'No reservations found'} 
-            subtitle={'Looks like you have no reservations on your properties.'} />
+            title={'No bookings found'} 
+            subtitle={'Looks like you have no bookings on your properties.'} />
     :
     <>
         {/* <div className=" space-y-4 mt-4">
-        { reservations.map((place, index) => (
+        { bookings.map((place, index) => (
             <ListingUserPlace  key={index} place={place}/>
         ))}
         </div> */}
         <div className="text-start mb-8">
             <div className="text-2xl font-bold">
-              Reservations
+              Bookings
             </div>
             <div className="font-light text-neutral-500 mt-2">
               Bookings on your own properties
@@ -48,7 +46,7 @@ const Bookings = () => {
         </div>
 
 
-        <UserBookings listings={reservations}/>
+        <UserBookings listings={bookings}/>
 
 
     </>

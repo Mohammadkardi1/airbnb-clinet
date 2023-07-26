@@ -1,6 +1,6 @@
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Gallery from '../components/Gallery';
 import ListingCategory from '../components/Listings/ListingCategory'
 import Map from "../components/Map";
@@ -13,6 +13,7 @@ import ListingPerks from "../components/Listings/ListingPerks";
 import useCountries from "../hooks/useCountries";
 import ListingReview from "../components/Listings/ListingReview";
 import ReviewForm from "../components/Form/ReviewForm";
+import { getPlace } from "../redux/actions/PlaceActions";
 
 
 
@@ -25,7 +26,9 @@ import ReviewForm from "../components/Form/ReviewForm";
 
 const PlacePage = () => {
   const {id} = useParams();
-  const [place, setPlace] = useState({})
+  // const [place, setPlace] = useState({})
+  const [nextItems, setNextItems] = useState(6)
+  const dispatch = useDispatch()
 
   
 
@@ -33,43 +36,61 @@ const PlacePage = () => {
   const {places, loading} = useSelector((state) => state.place)
 
 
+  console.log('place', places)
+
+
   useEffect(() => {
     // window.scrollTo(0, 0)
-    const foundPlace  = places.find(place => place._id === id)
-    setPlace(foundPlace)
-  }, [places]);
+    // const foundPlace  = places.find(place => place._id === id)
+    // setPlace(foundPlace)
+    dispatch(getPlace(id))
+
+
+  }, []);
 
   
 
   const { getByValue } = useCountries()
   // const location = getByValue(locationValue)
-  const coordinates = getByValue(place?.location?.value)?.latlng
+  const coordinates = getByValue(places[0]?.location?.value)?.latlng
 
+  const loadMoreHandler = () => {
+    setNextItems(nextItems+3)
+  }
+
+  const clickHandler = () => {
+    console.log(places)
+  }
 
 
   return (
     <>
+      <div onClick={clickHandler}>
+        Click here
+      </div>
+
+
     {
       loading  ?
       <PageLoadingModel/>
     :
     <>
-    {place  &&
+    {places[0]  &&
       <div className="mt-8">
 
 
       <div className="text-start mb-8">
         <div className="text-2xl font-bold">
-          {place?.title}
+          {places[0]?.title}
         </div>
         <div className="font-light text-neutral-500 mt-2">
-          {`${place?.location?.region}, ${place?.location?.label}`}
+          {`${places[0]?.location?.region}, ${places[0]?.location?.label}`}
         </div>
       </div>
 
 
 
-      <Gallery place={place} />
+      <Gallery place={places[0]} />
 
 
         
@@ -79,16 +100,16 @@ const PlacePage = () => {
         <div className="flex flex-col gap-2">
           <div 
             className="text-xl font-semibold flex flex-row items-center gap-2">
-            <div>Hosted by {place?.owner?.username}</div>
-            <Avatar src={place?.owner?.picture} altText={place?.owner?.username} />
+            <div>Hosted by {places[0]?.owner?.username}</div>
+            <Avatar src={places[0]?.owner?.picture} altText={places[0]?.owner?.username} />
           </div>
 
 
 
           <div className="flex flex-row items-center gap-4 font-light text-neutral-500">
-            <p>{place?.maxGuests} guests</p>
-            <p>{place?.rooms} rooms</p>
-            <p>{place?.bathrooms} bathrooms</p>
+            <p>{places[0]?.maxGuests} guests</p>
+            <p>{places[0]?.rooms} rooms</p>
+            <p>{places[0]?.bathrooms} bathrooms</p>
           </div>
 
         </div>
@@ -105,24 +126,24 @@ const PlacePage = () => {
         )} */}
 
           <ListingCategory
-            label={place?.category}
+            label={places[0]?.category}
           />
         <hr />
 
 
         <div className="text-lg font-light text-neutral-500">
-          {place?.description}
+          {places[0]?.description}
         </div>
 
 
-        {place?.perks?.length > 0  &&
+        {places[0]?.perks?.length > 0  &&
         <>
         <hr />
         <div>
             <h2 className="font-semibold text-2xl mb-3">Perks</h2>
             <div className=" grid grid-cols-2 gap-2">
             {
-              place?.perks?.map((name, index) => (
+              places[0]?.perks?.map((name, index) => (
                 <ListingPerks key={index} name={name}/>
               ))
             }
@@ -130,13 +151,13 @@ const PlacePage = () => {
         </div>
         </>
         }
-        {place?.extraInfo?.replace(/\s+/g, '') &&
+        {places[0]?.extraInfo?.replace(/\s+/g, '') &&
         <>
           <hr />
           <div>
               <h2 className="font-semibold text-2xl mb-3">Extra info</h2>
               <p className="text-lg font-light text-neutral-500">
-                {place?.extraInfo}
+                {places[0]?.extraInfo}
               </p>
           </div>
         </>
@@ -153,27 +174,42 @@ const PlacePage = () => {
 
 
 
-      <BookingForm place={place} />
+      <BookingForm place={places[0]} />
 
 
       </div>
 
 
+      <ReviewForm placeID={places[0]?._id}/>
 
-        <div className="mt-12">
-          <h2 className="font-semibold text-2xl mb-4">Reviews</h2>
-          <div className=" space-y-8">
-            {
-                place?.reviews?.map((review, index) => (
-                  <ListingReview key={index} review={review}/>
-                ))
-            }
-          </div>
+
+
+      {
+      places[0]?.reviews?.length > 0 &&
+      <>
+      <div className="mt-12">
+        <h2 className="font-semibold text-2xl mb-4">Reviews</h2>
+        <div className=" space-y-8">
+          {
+              places[0]?.reviews?.slice(0, nextItems)?.map((review, index) => (
+                <ListingReview key={index} review={review}/>
+              ))
+          }
         </div>
+      </div>
 
-
-        <ReviewForm placeID={place?._id}/>
-
+      <div className="flex justify-center">
+        {
+        places[0]?.reviews?.length >= 6 && places[0]?.reviews?.length > nextItems &&
+        <button
+            className="primary py-4 px-8 my-6 "
+            onClick={loadMoreHandler}>
+            Load more
+        </button>
+        }
+      </div>
+      </>
+      }
 
           {/* <div className="col-lg-12 mt-5  text-center">
               <h2 className="related__title">

@@ -18,17 +18,17 @@ export const createPlace = createAsyncThunk('place/createPlace', (place) => {
     return api.createPlace(place).then((response) => response.data)
 })
 
-export const removePlace = createAsyncThunk('place/removePlace', (id) => {
-    return api.removePlace(id).then((response) => response.data)
+export const removePlace = createAsyncThunk('place/removePlace', (placeID) => {
+    return api.removePlace(placeID).then((response) => response.data)
 })
 
 export const setUnavailableDates = createAsyncThunk('place/setUnavailableDates', (payload) => {
-    const { id, timestamps } = payload;
-    return api.setUnavailableDates(id, timestamps).then((response) => response.data)
+    const { placeID, timestamps } = payload;
+    return api.setUnavailableDates(placeID, timestamps).then((response) => response.data)
 })
 
-export const favoritePlace = createAsyncThunk('place/favoritePlace', (id) => {
-    return api.favoritePlace(id).then((response) => response.data)
+export const favoritePlace = createAsyncThunk('place/favoritePlace', (placeID) => {
+    return api.favoritePlace(placeID).then((response) => response.data)
 })
 
 export const getFavoritePlaces = createAsyncThunk('place/getFavoritePlaces', () => {
@@ -36,6 +36,9 @@ export const getFavoritePlaces = createAsyncThunk('place/getFavoritePlaces', () 
 })
 
 export const reviewPlace = createAsyncThunk('place/reviewPlace', async (payload) => {
-    return api.reviewPlace(payload.id, payload.review).then((response) => response.data)
+    return api.reviewPlace(payload.placeID, payload.review).then((response) => response.data)
 })
 
+export const editPlace = createAsyncThunk('place/editPlace', async (payload) => {
+    return api.editPlace(payload.placeID, payload.place).then((response) => response.data)
+})

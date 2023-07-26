@@ -200,7 +200,7 @@ return (
 
                         
                     </div>
-                    <button type="submit" className="primary w-full">
+                    <button type="submit" className="primary py-4 w-full">
                         {type === 'login' ? 'Log in' : 'Register'}
                     </button>
 
