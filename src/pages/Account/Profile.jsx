@@ -50,7 +50,7 @@ const Profile = () => {
         <div className='w-[600px] space-y-4 text-base border-2 border-black rounded-lg p-4'>
 
             <div className='flex justify-center'>
-                <Avatar src={user?.picture} altText={user?.username} height={"100px"} />
+                <Avatar src={user?.picture} alt= {user?.username} height={"100px"} />
             </div>
 
             <div className='flex justify-between'>

@@ -36,7 +36,6 @@ const PlacePage = () => {
   const {places, loading} = useSelector((state) => state.place)
 
 
-  console.log('place', places)
 
 
   useEffect(() => {
@@ -58,23 +57,17 @@ const PlacePage = () => {
     setNextItems(nextItems+3)
   }
 
-  const clickHandler = () => {
-    console.log(places)
-  }
 
 
   return (
     <>
-      <div onClick={clickHandler}>
-        Click here
-      </div>
-
-
     {
-      loading  ?
-      <PageLoadingModel/>
-    :
+      
     <>
+    {
+      loading  &&
+      <PageLoadingModel/>
+    }
     {places[0]  &&
       <div className="mt-8">
 
@@ -101,7 +94,7 @@ const PlacePage = () => {
           <div 
             className="text-xl font-semibold flex flex-row items-center gap-2">
             <div>Hosted by {places[0]?.owner?.username}</div>
-            <Avatar src={places[0]?.owner?.picture} altText={places[0]?.owner?.username} />
+            <Avatar src={places[0]?.owner?.picture} alt ={places[0]?.owner?.username} />
           </div>
 
 

@@ -21,10 +21,8 @@ const Home = () => {
   const activeCategory = searchParams.get('category') || "All"
 
 
-  console.log('places', places)
 
   useEffect(() => {
-    console.log("Home component is ran")
     try {
       dispatch(getAllPlaces())
     } catch (error) {
@@ -79,7 +77,7 @@ const Home = () => {
       
       {
         loading  ?
-        <PageLoadingModel/>
+        <PageLoadingModel isFixed={false}/>
       :
       <>
       {
@@ -91,7 +89,6 @@ const Home = () => {
             <ListingPlaceCard key={index} listing={place}/>
           ))}
         </div>
-        
       }
       </>
       }

@@ -100,7 +100,7 @@ const PlaceForm = () => {
                         owner: JSON.parse(localStorage.getItem('profile'))._id
                     }))
                 reset()
-                navigate('/account/places')
+                navigate('/account/properties')
             } catch (error) {
                 console.log("Error when uploading the image", error)
             }
@@ -111,7 +111,7 @@ const PlaceForm = () => {
                 dispatch(editPlace({placeID: searchParams.get('placeId'), 
                 place: {...data, perks}}))
                 reset()
-                navigate('/account/places')
+                navigate('/account/properties')
             } catch (error) {
                 console.log(error)
             }

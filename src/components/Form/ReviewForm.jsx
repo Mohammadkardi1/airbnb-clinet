@@ -34,8 +34,8 @@ const ReviewForm = ({placeID}) => {
             } catch (error) {
                 console.log(error)
             }
-            // reviewMsg.current.value = ''
-            // setRateValue(0)
+            reviewMsg.current.value = ''
+            setRateValue(1)
         }
     }
   return (

@@ -8,7 +8,7 @@ import AuthorizationProtect from './AuthorizationProtect'
 import AuthenticationProtect from './AuthenticationProtect'
 import Profile from '../pages/Account/Profile'
 import UserBookings from '../pages/bookings/UserBookings'
-import Places from '../pages/places/Places'
+import Properties from '../pages/properties/Properties'
 import PlacePage from '../pages/PlacePage'
 import BookingSinglePage from '../pages/BookingSinglePage'
 import EmailVerify from '../components/EmailVerify'
@@ -17,6 +17,7 @@ import PlaceForm from '../components/Form/PlaceForm'
 import Bookings from '../pages/bookings/Bookings'
 import Trips from '../pages/trips/Trips'
 import Favorites from '../pages/favorites/Favorites'
+
 
 const Routers = () => {
 
@@ -38,7 +39,7 @@ const Routers = () => {
             <Route index element={<Navigate to={'profile'}/>}/>
             <Route path='profile' element={<Profile/>}/>
             <Route path='bookings' element={<Bookings/>}/>
-            <Route path='places' element={<Places/>}/>
+            <Route path='properties' element={<Properties/>}/>
             <Route path='trips' element={<Trips/>}/>
             <Route path='favorites' element={<Favorites/>}/>
 

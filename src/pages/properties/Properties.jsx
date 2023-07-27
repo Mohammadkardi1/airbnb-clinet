@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from "react-redux"
 import PageLoadingModel from "../../components/Models/PageLoadingModel"
 import EmptyState from "../../components/EmptyState"
 import { getUserplaces } from "../../redux/actions/PlaceActions"
-import UserPlaces from "./UserPlaces"
+import UserPlaces from "./UserProperties"
 // import PropertiesClient from "./PropertiesClient"
 
 
-const Places =  () => {
+const UserProperties =  () => {
     const dispatch = useDispatch()
     const {loading, places} = useSelector(state => state.place)
   
@@ -66,4 +66,4 @@ const Places =  () => {
   );
 }
  
-export default Places;
+export default UserProperties;

@@ -20,7 +20,7 @@ const ListingReview = ({review}) => {
 
 
         <div className=" flex justify-center items-center">
-            <Avatar src={review?.user?.picture} altText={review?.user?.username} />
+            <Avatar src={review?.user?.picture} alt={review?.user?.username} />
         </div>
 
 

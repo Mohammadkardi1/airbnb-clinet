@@ -15,7 +15,6 @@ const Trips = () => {
   const {loading, bookings} = useSelector(state => state.booking)
 
 
-  console.log('trips', bookings)
 
   useEffect(() => {
     dispatch(getTrips())

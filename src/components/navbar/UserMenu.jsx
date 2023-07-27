@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { AuthActions } from "../../redux/slices/AuthSlice";
 import { useEffect, useState } from "react";
 import Avatar from "../Avatar";
-
+import { useNavigate } from "react-router-dom";
 
 const menu_items = [
     {
@@ -23,22 +23,18 @@ const menu_items = [
         path: 'bookings', 
         displayName: 'My bookings'
     },
-
-
-
-
     {
-        path: 'places', 
+        path: 'properties', 
         displayName: 'My properties'
     },
     // {
     //     path: 'bookings', 
     //     displayName: 'My properties'
     // },
-    {
-        path: 'Airbnb', 
-        displayName: 'Airbnb your home'
-    },
+    // {
+    //     path: 'Airbnb', 
+    //     displayName: 'Airbnb your home'
+    // },
     {
         path: 'places/new', 
         displayName: 'Add new place'
@@ -47,13 +43,14 @@ const menu_items = [
 
 const UserMenu = () => {
     const dispatch = useDispatch()
-
+    const navigate = useNavigate()
     const {user} = useSelector(state => state.auth)
     const [isOpen, setIsOpen] = useState(false);
 
     const logout = async () => {
         try {
             await dispatch(AuthActions.logout())
+            navigate('/home')
         } catch (error) {
             console.log(error)
         }
@@ -89,7 +86,7 @@ const UserMenu = () => {
 
 
         {/* <div className={`${user?.picture ? null : 'border-gray-500'} bg-gray-500 text-white rounded-full border  overflow-hidden`}> */}
-            <Avatar src={user?.picture} altText={user?.username} />
+            <Avatar src={user?.picture} alt={user?.username} />
         {/* </div> */}
         {user && (
             <div>

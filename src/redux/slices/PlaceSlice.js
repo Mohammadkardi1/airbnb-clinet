@@ -86,7 +86,7 @@ const PlaceSlice = createSlice({
             state.placeError = ''
         })
         builder.addCase(createPlace.fulfilled, (state, action) => {
-            state.places.push(action.payload.data)
+            state.places.unshift(action.payload.data)
             state.placeError = ''
             state.loading = false
         })
