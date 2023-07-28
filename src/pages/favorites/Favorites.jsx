@@ -11,25 +11,30 @@ import UserFavorites from './UserFavorites'
 const Favorites = () => {
 
   const dispatch = useDispatch()
-  const {loading, places} = useSelector(state => state.place)
+  const {loading, places, placeError} = useSelector(state => state.place)
 
   useEffect(() => {
     dispatch(getFavoritePlaces())
   }, [])
 
 
+  if (loading) {
+    return <PageLoadingModel isFixed={false}/>
+  }
+
+  if (placeError) {
+    return <div>Error: {placeError}</div>
+  }
+
+  if (places.length === 0) {
+    return (
+      <EmptyState  
+        title={'No favorites found'} 
+        subtitle={'Looks like you have no favorites listings.'} />
+    );
+  }
+
   return (
-    <>
-    {
-      loading  ?
-          <PageLoadingModel isFixed={false}/>
-      :
-      <>
-      {places.length === 0 ?
-          <EmptyState  
-              title={'No favorites found'} 
-              subtitle={'Looks like you have no favorites listings.'} />
-      :
       <>
         <SectionTitle
             title={'Favorites'}
@@ -37,10 +42,6 @@ const Favorites = () => {
           />
 
           <UserFavorites listings={places}/>
-      </>
-      }
-      </>
-      }
       </>
   )
 }

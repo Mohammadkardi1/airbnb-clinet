@@ -7,6 +7,8 @@ import { addBooking,
 
 const initialState = {
     bookings: [],
+    futureBookings: [],
+    pastBookings: [],
     // trips: [],
     // reservations: [],
     loading: false,
@@ -62,7 +64,9 @@ const bookingSlice = createSlice({
         })
         builder.addCase(getTrips.fulfilled, (state, action) => {
             state.loading = false
-            state.bookings = action?.payload.data
+            // state.bookings = action?.payload.data
+            state.futureBookings = action?.payload.data.futureBookings
+            state.pastBookings = action?.payload.data.pastBookings
             state.bookingError = ''
         })
         builder.addCase(getTrips.rejected, (state, action) => {
@@ -81,7 +85,9 @@ const bookingSlice = createSlice({
         })
         builder.addCase(getBookingsOnProperties.fulfilled, (state, action) => {
             state.loading = false
-            state.bookings = action?.payload.data
+            // state.bookings = action?.payload.data
+            state.futureBookings = action?.payload.data.futureBookings
+            state.pastBookings = action?.payload.data.pastBookings
             state.bookingError = ''
         })
         builder.addCase(getBookingsOnProperties.rejected, (state, action) => {

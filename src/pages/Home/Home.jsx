@@ -10,10 +10,8 @@ import EmptyState from "../../components/EmptyState";
 
 const Home = () => {
   const dispatch = useDispatch()
-
   const {loading, places}  = useSelector((state) => state.place)
-
-  const [filteredPlaces, setFilteredPlaces] = useState([])
+  const [displayedPlaces, setDisplayedPlaces] = useState([])
 
   const [searchParams, setSearchParams] = useSearchParams()
   const { category } = useParams()
@@ -36,9 +34,9 @@ const Home = () => {
 
   useEffect(() => {
     if (activeCategory === 'All') {
-      setFilteredPlaces(places)
+      setDisplayedPlaces(places)
     } else {
-      setFilteredPlaces(places.filter(place => place.category === activeCategory))
+      setDisplayedPlaces(places.filter(place => place.category === activeCategory))
     }
   }, [places])
 
@@ -47,12 +45,12 @@ const Home = () => {
 
 
 
-  const handleClick = (label) => {
+  const filterPlacesByCategory  = (label) => {
     setSearchParams({ category: label})
     if (label === 'All') {
-      setFilteredPlaces(places)
+      setDisplayedPlaces(places)
     } else {
-      setFilteredPlaces(places.filter(place => place.category === label))
+      setDisplayedPlaces(places.filter(place => place.category === label))
     }
     
   }
@@ -63,10 +61,10 @@ const Home = () => {
       <div className="pt-4 flex flex-row items-center justify-between   
       overflow-x-auto scrollbar">
         {categories_items.map((item, index) => (        
-          <div key={index} onClick={() => handleClick(item.label)}
+          <div key={index} onClick={() => filterPlacesByCategory(item.label)}
             className={`flex flex-col items-center justify-center gap-2 p-3 border-b-2
-                  hover:text-neutral-800 transition cursor-pointer
-                  ${activeCategory === item.label ? 'text-neutral-800 border-b-neutral-800 ' : 'text-neutral-500 border-transparent'}`}>
+                  hover:text-brand transition cursor-pointer
+                  ${activeCategory === item.label ? 'text-brand border-b-brand ' : 'text-neutral-500 border-transparent'}`}>
             {item.icon}
             <div className="font-medium text-sm">
               {item.label}
@@ -81,11 +79,13 @@ const Home = () => {
       :
       <>
       {
-      filteredPlaces?.length === 0 ? 
-        <EmptyState  title={'No exact matches'} subtitle={'Try changing or removing some of your filters.'} />
+      displayedPlaces?.length === 0 ? 
+        <EmptyState  
+          title={'No exact matches'} 
+          subtitle={'Try changing or removing some of your filters.'} />
         :
         <div className="mt-8 grid gap-x-6 gap-y-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-          {filteredPlaces?.map((place, index) => (
+          {displayedPlaces?.map((place, index) => (
             <ListingPlaceCard key={index} listing={place}/>
           ))}
         </div>
