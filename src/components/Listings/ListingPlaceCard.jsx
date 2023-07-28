@@ -66,7 +66,8 @@ const ListingPlaceCard= ({listing, activateActions = false, handleAction, action
             </div>
             <div className="flex justify-between">
               <h1 className="font-semibold text-lg">
-                {listing?.title}
+                {listing?.title?.split(' ').slice(0, 10).join(' ')}
+                {listing?.title?.split(' ').length >= 10 ? '...' : ''}
               </h1>
               
               <div className="flex items-center gap-1 text-lg ">

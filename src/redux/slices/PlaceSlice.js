@@ -8,7 +8,8 @@ import { createPlace,
         getFavoritePlaces, 
         reviewPlace,
         getPlace,
-        editPlace} from "../actions/PlaceActions"
+        editPlace,
+        getPlacesBySearch} from "../actions/PlaceActions"
 
 
 const initialState = {
@@ -83,6 +84,25 @@ const PlaceSlice = createSlice({
             state.places = []
             state.placeError = action.error.message
         })
+
+
+
+
+        builder.addCase(getPlacesBySearch.pending, (state) => {
+            state.loading = true
+            state.placeError = ''
+        })
+        builder.addCase(getPlacesBySearch.fulfilled, (state, action) => {
+            state.loading = false
+            state.places = action?.payload.data
+            state.placeError = ''
+        })
+        builder.addCase(getPlacesBySearch.rejected, (state, action) => {
+            state.loading = false
+            state.places = []
+            state.placeError = action.error.message
+        })
+
 
 
 

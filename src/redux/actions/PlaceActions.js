@@ -14,6 +14,10 @@ export const getUserplaces = createAsyncThunk('place/userplaces', () => {
     return api.getUserplaces().then((response) => response.data)
 })
 
+export const getPlacesBySearch = createAsyncThunk('place/getPlacesBySearch', (searchQuery) => {
+    return api.getPlacesBySearch(searchQuery).then((response) => response.data)
+})
+
 export const createPlace = createAsyncThunk('place/createPlace', (place) => {
     return api.createPlace(place).then((response) => response.data)
 })

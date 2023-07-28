@@ -23,7 +23,18 @@ export const googleLogin = (userInfo) => API.post('/api/auth/googleLogin', userI
 export const getAllPlaces = () => API.get('/api/place/allPlaces')
 export const getPlace = (id) => API.get(`/api/place/getPlace/${id}`)
 
+
+
+export const getPlacesBySearch = (searchQuery) => API.get(`/api/place/search?searchQuery=${searchQuery}` )
+
+
+
+
 export const getUserplaces = () => API.get('/api/place/userPlaces' )
+
+
+
+
 export const createPlace = (placeInfo) => API.post('/api/place/addPlace', placeInfo)
 
 

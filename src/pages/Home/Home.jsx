@@ -84,7 +84,9 @@ const Home = () => {
           title={'No exact matches'} 
           subtitle={'Try changing or removing some of your filters.'} />
         :
-        <div className="mt-8 grid gap-x-6 gap-y-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+
+        // grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6
+        <div className="mt-8 grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3  2xl:grid-cols-4 gap-x-6 gap-y-8">
           {displayedPlaces?.map((place, index) => (
             <ListingPlaceCard key={index} listing={place}/>
           ))}

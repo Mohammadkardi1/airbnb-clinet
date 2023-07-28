@@ -23,19 +23,9 @@ const EmailVerify = () => {
 		}
 	}, [])
 
-	const clickHandler = () => {
-		console.log('isVerified', isVerified)
-		console.log('authError', authError)
-		console.log(param.id)
-		console.log( param.token)
-
-	}
 
 	return (
 		<>
-		<div onClick={clickHandler}>
-			Click here
-		</div>
 			{
 			loading  ?
 				<PageLoadingModel/>
