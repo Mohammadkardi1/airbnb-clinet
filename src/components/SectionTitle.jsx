@@ -3,10 +3,10 @@ import React from 'react'
 const SectionTitle = ({title, secondaryText}) => {
   return (
     <div className="text-start mb-8">
-        <div className="text-2xl font-bold">
+        <div className="text-2xl font-bold lg:text-[2rem]">
             {title}
         </div>
-        <div className="font-light text-neutral-500 mt-2">
+        <div className="font-light text-neutral-500 mt-2 lg:text-[1.5rem]">
             {secondaryText}
         </div>
     </div>

@@ -143,11 +143,11 @@ const PlaceSlice = createSlice({
 
 
         builder.addCase(setUnavailableDates.pending, (state) => {
-            state.loading = true
+            // state.loading = true
             state.placeError = ''
         })
         builder.addCase(setUnavailableDates.fulfilled, (state, action) => {
-            state.loading = false
+            // state.loading = false
             state.places = [action?.payload.data]
 
             // state.places = state.places.map((place) => {
@@ -160,7 +160,7 @@ const PlaceSlice = createSlice({
             state.placeError = ''
         })
         builder.addCase(setUnavailableDates.rejected, (state, action) => {
-            state.loading = false
+            // state.loading = false
             state.placeError = action.error.message
         })
 

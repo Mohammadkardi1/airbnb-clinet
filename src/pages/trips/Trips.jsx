@@ -6,6 +6,7 @@ import PreInput from '../../components/PreInput'
 import SectionTitle from '../../components/SectionTitle'
 import { getTrips } from '../../redux/actions/BookingActions'
 import UserTrips from './UserTrips'
+import { MdKeyboardDoubleArrowRight } from 'react-icons/md';
 
 
 
@@ -54,18 +55,24 @@ const Trips = () => {
         />
         {futureBookings?.length > 0 &&
         <>
+        <div className='flex items-center gap-1 font-semibold'>
+          <MdKeyboardDoubleArrowRight size={34}/>
           <PreInput 
-            header= 'Future Trips'
-          />
+              header= 'Future Trips'
+            />
+          </div>
           <UserTrips listings={futureBookings}/>
         </>
         }
-        <div className=' mt-28'></div>
+        <div className=' mt-20'></div>
         {pastBookings?.length > 0 &&
         <>
+        <div className='flex items-center gap-1 font-semibold'>
+          <MdKeyboardDoubleArrowRight size={34}/>
           <PreInput 
             header= 'Past Trips'
           />
+          </div>
           <UserTrips listings={pastBookings}/>
         </>
         }

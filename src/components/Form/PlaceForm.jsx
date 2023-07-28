@@ -242,7 +242,7 @@ const PlaceForm = () => {
                         header= {'Perks'}
                         description= {'Select all the perks of your place'}
                         />
-                <div className="grid mt-2 gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+                <div className="grid mt-2 gap-2 grid-cols-1 sm:grid-cols-3 lg:grid-cols-6">
                     {/* <Perks perks={perks} setPerks={setPerks} /> */}
                     {perk_items.map((perk, index) => (
                         <label key={index} className="border border-gray-400 p-4 flex rounded-2xl gap-2 items-center cursor-pointer hover:bg-brand hover:text-white hover:border-none">
@@ -302,7 +302,7 @@ const PlaceForm = () => {
                     header= {'Rooms & Bathrooms'}
                     description= {'Add number of rooms and bathrooms.'}
                     />
-                <div className="grid gap-2 grid-cols-2 md:grid-cols-4">
+                <div className="grid gap-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
                     <div>
                         <h3 className="mt-2 mb-2">Rooms
                             <span className={`text-red-600 ${errors.rooms?.message ? 'visible' : 'invisible'}`}>

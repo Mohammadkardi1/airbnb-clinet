@@ -43,7 +43,7 @@ const ReviewForm = ({placeID}) => {
     }
   return (
     <>
-        <form className='mt-12 space-y-4' action="" onSubmit={submithandler}>
+        <form className=' mt-28 space-y-4' action="" onSubmit={submithandler}>
             <h2 className="font-semibold text-xl mb-4">Leave your experience</h2>
             <div className="flex items-center gap-5">
                 {rates.map((item, index) => (
