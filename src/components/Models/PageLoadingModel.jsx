@@ -8,7 +8,7 @@ const PageLoadingModel = ({size = "7em", padding = "py-36", color= "#2196f3", is
 
   return (
     <>
-      <div className={`${isFixed ? "fixed inset-0" : ""} flex items-center justify-center ${padding}`}>
+      <div className={`${isFixed ? "fixed inset-0 z-20 " : ""} flex items-center justify-center ${padding}`}>
             <CircularProgress size={size} style={{ color: color }}/>
       </div>
     </>

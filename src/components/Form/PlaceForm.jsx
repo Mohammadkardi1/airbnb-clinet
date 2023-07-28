@@ -10,6 +10,7 @@ import ListingPerks from "../Listings/ListingPerks";
 import Select from 'react-select'
 import useCountries from '../../hooks/useCountries'
 import PageLoadingModel from "../Models/PageLoadingModel";
+import PreInput from "../PreInput";
 // import "flag-icon-css/css/flag-icon.min.css";
 
 
@@ -17,14 +18,14 @@ import PageLoadingModel from "../Models/PageLoadingModel";
 
     
 
-const preInput = (header,description) => {
-    return (
-    <>
-        <h2 className="text-2xl">{header}</h2>
-        <p className="text-gray-500 text-sm mb-1">{description}</p>
-    </>
-    )
-}
+// const preInput = (header,description) => {
+//     return (
+//     <>
+//         <h2 className="text-2xl">{header}</h2>
+//         <p className="text-gray-500 text-sm mb-1">{description}</p>
+//     </>
+//     )
+// }
 
 const PlaceForm = () => {
     const [searchParams, setSearchParams] = useSearchParams()
@@ -130,7 +131,10 @@ const PlaceForm = () => {
 
         <form onSubmit={handleSubmit(savePlace)} className='space-y-6 my-12'>
             <div>
-                {preInput('Title', 'Title for your place. should be short and catchy as in advertisement')}
+                <PreInput
+                    header= {'Title'}
+                    description= {'Title for your place. should be short and catchy as in advertisement'}
+                    />
                 <input 
                     type="text" 
                     placeholder="e.g. My lovely apt"
@@ -164,7 +168,10 @@ const PlaceForm = () => {
 
 
             <div>
-                {preInput('Location','Where is your place located')}
+                <PreInput
+                        header= {'Location'}
+                        description= {'Where is your place located'}
+                        />
                 <Select placeholder="Select Location" isClearable
                     options={getAll()}
                     value={watch('location')}
@@ -197,7 +204,10 @@ const PlaceForm = () => {
 
 
             <div>
-                {preInput('Description','Description of the place')}
+                <PreInput
+                    header= {'Description'}
+                    description= {'Description of the place'}
+                    />
                 <textarea rows={4}
                     {...register('description', {required: 'Please describe the place'})}/>
                 <p className={`text-red-600 ${errors.description?.message ? 'visible' : 'invisible'}`}>
@@ -207,7 +217,10 @@ const PlaceForm = () => {
 
             {!searchParams.get('placeId') && 
             <div>
-                {preInput('Photos','more = better')}
+                <PreInput
+                    header= {'Photos'}
+                    description= {'more = better'}
+                    />
                 <label className="h-32 cursor-pointer flex items-center gap-1 justify-center border border-gray-400 bg-transparent rounded-2xl p-2 text-2xl text-gray-600">
                     <input name="photos" type="file" multiple className="hidden" accept="image/*"
                         {...register('photos', {required: "Please add some photos"})}/>
@@ -225,7 +238,10 @@ const PlaceForm = () => {
 
             
             <div>
-                {preInput('Perks','Select all the perks of your place')}
+                <PreInput
+                        header= {'Perks'}
+                        description= {'Select all the perks of your place'}
+                        />
                 <div className="grid mt-2 gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
                     {/* <Perks perks={perks} setPerks={setPerks} /> */}
                     {perk_items.map((perk, index) => (
@@ -242,7 +258,10 @@ const PlaceForm = () => {
             
             
             <div>
-                {preInput('Extra info','House rules, etc')}
+                <PreInput
+                    header= {'Extra info'}
+                    description= {'House rules, etc'}
+                    />
                 <textarea rows={4} {...register('extraInfo')}/>
             </div>
 
@@ -250,7 +269,10 @@ const PlaceForm = () => {
 
 
             <div>
-                {preInput('Category','Select the category that accurately describes the place')}
+                <PreInput
+                    header= {'Category'}
+                    description= {'Select the category that accurately describes the place'}
+                    />
                 <select {...register('category', { required: 'Selecting the category is required' })}>
                     <option value="">Select a category</option>
                     <option value="Beach">Beach</option>
@@ -276,7 +298,10 @@ const PlaceForm = () => {
 
 
             <div>
-                {preInput('Rooms & Bathrooms','Add number of rooms and bathrooms.')}
+                <PreInput
+                    header= {'Rooms & Bathrooms'}
+                    description= {'Add number of rooms and bathrooms.'}
+                    />
                 <div className="grid gap-2 grid-cols-2 md:grid-cols-4">
                     <div>
                         <h3 className="mt-2 mb-2">Rooms
@@ -321,7 +346,7 @@ const PlaceForm = () => {
             <button className="primary py-4 my-4 w-full" type="submit" disabled={loading}>
                 {
                     loading ? 
-                        <PageLoadingModel size={"2em"} padding={"0"} color={"#4a148c"}/>
+                        <PageLoadingModel  isFixed={false} size={"1.7em"} padding={"0"} color={"#fff"}/>
                     :
                     isUpdated ? "Update" : "Submit"
                 }

@@ -14,6 +14,7 @@ import useCountries from "../hooks/useCountries";
 import ListingReview from "../components/Listings/ListingReview";
 import ReviewForm from "../components/Form/ReviewForm";
 import { getPlace } from "../redux/actions/PlaceActions";
+import SectionTitle from "../components/SectionTitle";
 
 
 
@@ -33,7 +34,7 @@ const PlacePage = () => {
   
 
   
-  const {places, loading} = useSelector((state) => state.place)
+  const {places, loading, placeFavorite} = useSelector((state) => state.place)
 
 
 
@@ -61,32 +62,25 @@ const PlacePage = () => {
 
   return (
     <>
-    {
       
+    {loading  ?
+    <PageLoadingModel isFixed={false}/>
+    :
+
+
     <>
-    {
-      loading  &&
-      <PageLoadingModel/>
-    }
     {places[0]  &&
       <div className="mt-8">
 
-
-      <div className="text-start mb-8">
-        <div className="text-2xl font-bold">
-          {places[0]?.title}
-        </div>
-        <div className="font-light text-neutral-500 mt-2">
-          {`${places[0]?.location?.region}, ${places[0]?.location?.label}`}
-        </div>
-      </div>
-
+      <SectionTitle
+          title={places[0]?.title}
+          secondaryText={`${places[0]?.location?.region}, ${places[0]?.location?.label}`}
+        />
 
 
       <Gallery place={places[0]} />
 
 
-        
 
       <div className="mt-8 mb-8 grid gap-8 grid-cols-1 md:grid-cols-[2fr_1fr]">
       <div className="flex flex-col gap-8 mt-20 static z-[1]">
@@ -110,13 +104,6 @@ const PlacePage = () => {
         <hr />
 
 
-        {/* {category && (
-          <ListingCategory
-            icon={category.icon} 
-            label={category?.label}
-            description={category?.description} 
-          />
-        )} */}
 
           <ListingCategory
             label={places[0]?.category}
@@ -203,18 +190,17 @@ const PlacePage = () => {
       </div>
       </>
       }
-
-          {/* <div className="col-lg-12 mt-5  text-center">
-              <h2 className="related__title">
-                  You might also like
-              </h2>
-          </div>
-          <ProductList data={relatedProducts}/> */}
-
       </div>
     }
     </>
     }
+
+    {
+      placeFavorite &&
+      <PageLoadingModel/>
+    }
+
+    
     </>
   );
 }

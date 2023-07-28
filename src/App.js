@@ -4,25 +4,33 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { AuthActions } from './redux/slices/AuthSlice'; 
-import { getAllPlaces } from './redux/actions/PlaceActions';
-import { getAllBookings } from './redux/actions/BookingActions';
 import './App.css';
+import decode from 'jwt-decode';
 
 
 function App() {
   const dispatch = useDispatch()
 
-
-
   useEffect(() => {
-    try {
-      dispatch(AuthActions.loginByToken())
-      // dispatch(getAllPlaces())
-      // dispatch(getAllBookings())
-    } catch (error) {
-      console.log(error)
+    const token = JSON.parse(localStorage.getItem('profile'))?.token;
+    if (token) {
+      const decodedToken = decode(token);
+      if (decodedToken.exp * 1000 < new Date().getTime()) {
+        try {
+          dispatch(AuthActions.logout())
+        } catch (error) {
+            console.log(error)
+        }
+      } else {
+        try {
+          dispatch(AuthActions.loginByToken())
+        } catch (error) {
+          console.log(error)
+        }
+      }
     }
   }, [])
+
 
   
   return (

@@ -6,12 +6,12 @@ import Container from './Container'
 
 const Layout = () => {
   return (
-    <div className='relative'>
+    <div className='relative flex flex-col min-h-screen'>
       <Navbar/> 
-      <Container>
-        <Outlet/>
-      </Container>
-      <Footer/>
+        <Container>
+          <Outlet/>
+        </Container>
+        <Footer/>
     </div>
   )
 }

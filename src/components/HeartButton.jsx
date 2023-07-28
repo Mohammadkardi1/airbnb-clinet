@@ -2,6 +2,7 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { favoritePlace } from "../redux/actions/PlaceActions";
+import PageLoadingModel from "./Models/PageLoadingModel";
 
 
 const HeartButton = ({ listingId, favorites}) => {
@@ -37,6 +38,8 @@ const HeartButton = ({ listingId, favorites}) => {
         />
 
     </div>
+
+
    );
 }
  

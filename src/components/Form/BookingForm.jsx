@@ -242,9 +242,10 @@ const BookingForm = ({place}) => {
       <button className="primary w-full mt-4 py-4" disabled={loading}>
         {
             loading ? 
-                <PageLoadingModel size={"2em"} padding={"0"} color={"#4a148c"}/>
+                <PageLoadingModel isFixed={false} size={"1.7em"} padding={"0"} color={"#fff"}/>
             :
             <div>
+
             Book this place
             </div>
         }

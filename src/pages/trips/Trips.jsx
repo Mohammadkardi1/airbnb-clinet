@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import EmptyState from '../../components/EmptyState'
 import PageLoadingModel from '../../components/Models/PageLoadingModel'
+import SectionTitle from '../../components/SectionTitle'
 import { getTrips } from '../../redux/actions/BookingActions'
 import UserTrips from './UserTrips'
 
@@ -28,7 +29,7 @@ const Trips = () => {
 
       {
       loading  ?
-          <PageLoadingModel/>
+          <PageLoadingModel isFixed={false}/>
       :
       <>
       {bookings?.length === 0 ?
@@ -37,24 +38,12 @@ const Trips = () => {
               subtitle={'Looks like you have not reserved any trips.'} />
       :
       <>
-          {/* <div className=" space-y-4 mt-4">
-          { trips.map((place, index) => (
-              <ListingUserPlace  key={index} place={place}/>
-          ))}
-          </div> */}
-          <div className="text-start mb-8">
-              <div className="text-2xl font-bold">
-                Trips
-              </div>
-              <div className="font-light text-neutral-500 mt-2">
-                Where you've been and where you're going
-              </div>
-          </div>
-
-
-          <UserTrips listings={bookings}/>
-
-
+        <SectionTitle
+          title={'Trips'}
+          secondaryText={'Where you have been and where you are going'}
+        />
+      
+        <UserTrips listings={bookings}/>
       </>
       }
       </>

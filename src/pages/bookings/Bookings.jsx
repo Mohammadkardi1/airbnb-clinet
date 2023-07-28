@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import EmptyState from '../../components/EmptyState'
 import PageLoadingModel from '../../components/Models/PageLoadingModel'
+import SectionTitle from '../../components/SectionTitle'
 import { getBookingsOnProperties } from "../../redux/actions/BookingActions"
 import UserBookings from './UserBookings'
 
@@ -22,7 +23,7 @@ const Bookings = () => {
     <>
     {
     loading  ?
-        <PageLoadingModel/>
+        <PageLoadingModel isFixed={false}/>
     :
     <>
     {bookings.length === 0 ?
@@ -31,24 +32,11 @@ const Bookings = () => {
             subtitle={'Looks like you have no bookings on your properties.'} />
     :
     <>
-        {/* <div className=" space-y-4 mt-4">
-        { bookings.map((place, index) => (
-            <ListingUserPlace  key={index} place={place}/>
-        ))}
-        </div> */}
-        <div className="text-start mb-8">
-            <div className="text-2xl font-bold">
-              Bookings
-            </div>
-            <div className="font-light text-neutral-500 mt-2">
-              Bookings on your own properties
-            </div>
-        </div>
-
-
+        <SectionTitle
+          title={'Bookings'}
+          secondaryText={'Bookings on your own properties'}
+        />
         <UserBookings listings={bookings}/>
-
-
     </>
     }
     </>

@@ -5,25 +5,34 @@ import PageLoadingModel from "../../components/Models/PageLoadingModel"
 import EmptyState from "../../components/EmptyState"
 import { getUserplaces } from "../../redux/actions/PlaceActions"
 import UserPlaces from "./UserProperties"
+import SectionTitle from "../../components/SectionTitle"
 // import PropertiesClient from "./PropertiesClient"
 
 
 const UserProperties =  () => {
     const dispatch = useDispatch()
     const {loading, places} = useSelector(state => state.place)
+    
+
+
+    console.log(places)
   
     useEffect(() => {
       dispatch(getUserplaces())
     }, [])
-  
+
+    const clickHandler = () => {
+        console.log(!places)
+    }
 
   return (
     <>
-
-
+    <div onClick={clickHandler}>
+        Click here
+    </div>
     {
-    loading  ?
-        <PageLoadingModel/>
+    loading ?
+        <PageLoadingModel isFixed={false}/>
     :
     <>
     {places.length === 0 ?
@@ -32,24 +41,12 @@ const UserProperties =  () => {
             subtitle={'Looks like you have no properties.'} />
     :
     <>
-        {/* <div className=" space-y-4 mt-4">
-        { places.map((place, index) => (
-            <ListingUserPlace  key={index} place={place}/>
-        ))}
-        </div> */}
-        <div className="text-start mb-8">
-            <div className="text-2xl font-bold">
-                Properties
-            </div>
-            <div className="font-light text-neutral-500 mt-2">
-                List of your properties
-            </div>
-        </div>
-        <>
-            <UserPlaces listings={places}/>
+        <SectionTitle
+          title={'Properties'}
+          secondaryText={'List of your properties'}
+        />
 
-        </>
-
+        <UserPlaces listings={places}/>
     </>
     }
     </>

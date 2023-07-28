@@ -2,9 +2,10 @@ import React, { useRef, useState } from 'react'
 import StarRateOutlinedIcon from '@mui/icons-material/StarRateOutlined';
 import StarRateIcon from '@mui/icons-material/StarRate';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { reviewPlace } from '../../redux/actions/PlaceActions';
 import { MessageModel } from '../Models/MessageModel';
+import PageLoadingModel from '../Models/PageLoadingModel';
 
 
 
@@ -17,6 +18,8 @@ const ReviewForm = ({placeID}) => {
     // const [rating, setRating] = useState(null)
 
     const reviewMsg = useRef('')
+
+    const {placeReviewing} = useSelector(state => state.place)
 
 
 
@@ -75,10 +78,16 @@ const ReviewForm = ({placeID}) => {
 
 
 
-            <button
-                className="primary px-8 py-4"
-                type='submit'>
-                Submit
+            <button className="primary px-8 py-4" type='submit' disabled={placeReviewing}>
+                {
+                    placeReviewing ? 
+                        <PageLoadingModel isFixed={false} size={"1.7em"} padding={"px-4"} color={"#fff"}/>
+                    :
+                    <div>
+
+                    Submit
+                    </div>
+                }
             </button>
 
 
