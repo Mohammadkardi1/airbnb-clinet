@@ -52,7 +52,7 @@ const MainAccountPage = () => {
 
   return (
     <>
-      <div className="w-full flex justify-center mt-8 gap-2 mb-8">
+      <div className="w-full flex flex-wrap justify-center mt-8 gap-2 mb-8">
         {
           header_items.map((item, index) => (
             <Link key={index} className={linkClasses(item.name)} to={`/account/${item.name}`}>

@@ -37,7 +37,7 @@ const ListingPlaceCard= ({listing, activateActions = false, handleAction, action
     <>
     { listing && 
 
-      <div className="relative">
+      <div className="relative flex flex-col justify-between">
 
         <div className="absolute z-10 top-3 right-3">
           {

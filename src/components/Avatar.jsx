@@ -1,13 +1,13 @@
 
 
-const Avatar = ({ src, altText, height="35px" }) => {
+const Avatar = ({ src, alt, height="35px" }) => {
   return ( 
     <div
          style={{"height": height}}>
         {src ? 
             <img 
                 src={src}
-                alt={altText} 
+                alt={alt} 
                 style={{"height": "100%"}}
                 className='rounded-full hidden sm:block'/>
             :

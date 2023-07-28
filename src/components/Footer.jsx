@@ -31,8 +31,8 @@ const Footer = () => {
   return (
     <div className='mt-auto'>
       <Container>
-        <div className='flex justify-between mt-16  py-6  border-t border-gray-600'>
-            <p className='text-base font-medium'>
+        <div className='flex flex-col items-center gap-y-4 lg:flex-row lg:justify-between mt-16 py-6 border-t border-gray-600'>
+            <p className=' text-center font-medium'>
                 Copyright &copy; 2023 developed by Mohammad Kardi. All rights reserved.
             </p>
             <ul className='p-0 m-0 flex gap-1 sm:gap-3'>

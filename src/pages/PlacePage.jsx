@@ -9,7 +9,7 @@ import Avatar from "../components/Avatar";
 import PageLoadingModel from "../components/Models/PageLoadingModel";
 import ListingPerks from "../components/Listings/ListingPerks";
 // import AddressLink from "../AddressLink";
-
+import moment from 'moment';
 import useCountries from "../hooks/useCountries";
 import ListingReview from "../components/Listings/ListingReview";
 import ReviewForm from "../components/Form/ReviewForm";
@@ -84,11 +84,20 @@ const PlacePage = () => {
 
       <div className="mt-8 mb-8 grid gap-8 grid-cols-1 md:grid-cols-[2fr_1fr]">
       <div className="flex flex-col gap-8 mt-20 static z-[1]">
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-8">
           <div 
-            className="text-xl font-semibold flex flex-row items-center gap-2">
-            <div>Hosted by {places[0]?.owner?.username}</div>
-            <Avatar src={places[0]?.owner?.picture} alt ={places[0]?.owner?.username} />
+            className=" space-y-2">
+            <h1 className="text-xl font-semibold">Hosted by</h1>
+
+
+            <div className="flex items-center gap-3">
+              <Avatar src={places[0]?.owner?.picture} alt ={places[0]?.owner?.username} />
+              <div>
+                <p>{places[0]?.owner?.username}</p>
+                <p className=" text-gray-500">{moment(places[0]?.createdAt).fromNow()}</p>
+              </div>
+
+            </div>
           </div>
 
 
@@ -111,8 +120,15 @@ const PlacePage = () => {
         <hr />
 
 
-        <div className="text-lg font-light text-neutral-500">
+        {/* <div className="text-lg font-light text-neutral-500">
           {places[0]?.description}
+        </div> */}
+
+        <div>
+              <h2 className="font-semibold text-2xl mb-3">Description</h2>
+              <p className="text-lg font-light text-neutral-500">
+                {places[0]?.description}
+              </p>
         </div>
 
 
