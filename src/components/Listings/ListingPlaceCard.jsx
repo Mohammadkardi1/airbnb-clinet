@@ -36,24 +36,18 @@ const ListingPlaceCard= ({listing, activateActions = false, handleAction, action
   return (
     <>
     { listing && 
-
       <div className="relative flex flex-col justify-between">
-
         <div className="absolute z-10 top-3 right-3">
           {
             JSON.parse(localStorage.getItem('profile'))?._id &&
             <HeartButton 
               listingId={listing?._id} 
               favorites = {listing?.favorites}
-              // currentUser={currentUser}
             />
           }
         </div>
-
-
         <Link to={`/place/${listing?._id}`} 
           className="col-span-1 cursor-pointer group">
-            
           <div className="flex flex-col gap-2 w-full">
             <div className="aspect-square w-full overflow-hidden rounded-xl">
               <img
@@ -61,46 +55,24 @@ const ListingPlaceCard= ({listing, activateActions = false, handleAction, action
                 src={listing?.photos[0]?.url}
                 alt="Listing"
               />
-
-              
             </div>
             <div className="flex justify-between">
               <h1 className="font-semibold text-lg">
                 {listing?.title?.split(' ').slice(0, 10).join(' ')}
                 {listing?.title?.split(' ').length >= 10 ? '...' : ''}
               </h1>
-              
               <div className="flex items-center gap-1 text-lg ">
-              
                 <StarRateIcon
-                    // size={24}
                     className=" text-black"/>
                   <p>
                   {reviewAvg }
                   </p>
-                  
               </div>
-
             </div>
-
             <p className="font-light text-neutral-500">
               {`${listing?.location?.region}, ${listing?.location?.label}`}
             </p>
-
             <p className="font-semibold">$ {listing?.price} per night </p>
-
-
-
-            {/* {onAction && actionLabel && (
-              <button
-                // disabled={disabled}
-                // small
-                // label={actionLabel} 
-                onClick={handleAction}
-              >
-                {actionLabel}
-              </button>
-            )} */}
           </div>
         </Link>
 
@@ -114,7 +86,6 @@ const ListingPlaceCard= ({listing, activateActions = false, handleAction, action
             </svg>
             Edit
           </button>
-
           <button className="danger flex justify-center items-center gap-2 py-2"
             onClick={deleteHandler}>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -124,7 +95,6 @@ const ListingPlaceCard= ({listing, activateActions = false, handleAction, action
           </button>
         </div>
         }
-
         {
           placeRemoving &&
           <PageLoadingModel/>
@@ -133,7 +103,6 @@ const ListingPlaceCard= ({listing, activateActions = false, handleAction, action
           placeFavorite &&
           <PageLoadingModel/>
         }
-
       </div>
     }
     </>

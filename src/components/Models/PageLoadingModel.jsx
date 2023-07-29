@@ -2,12 +2,7 @@ import React from 'react'
 import { CircularProgress } from '@mui/material';
 
 
-
-
 const PageLoadingModel = ({ padding = "py-36", color= "#2196f3", isFixed= true}) => {
-
-
-
 
   return (
     <>

@@ -3,7 +3,7 @@ import ListingPlaceCard from "../../components/Listings/ListingPlaceCard";
 import PageLoadingModel from "../../components/Models/PageLoadingModel";
 import { useEffect, useState } from "react";
 import { getAllPlaces } from "../../redux/actions/PlaceActions";
-import { useParams, useSearchParams } from 'react-router-dom'; 
+import { useSearchParams } from 'react-router-dom'; 
 import {categories_items} from '../../assets/data/DataItems'
 import EmptyState from "../../components/EmptyState";
 
@@ -12,10 +12,7 @@ const Home = () => {
   const dispatch = useDispatch()
   const {loading, places}  = useSelector((state) => state.place)
   const [displayedPlaces, setDisplayedPlaces] = useState([])
-
   const [searchParams, setSearchParams] = useSearchParams()
-  const { category } = useParams()
-
   const activeCategory = searchParams.get('category') || "All"
 
 
@@ -29,9 +26,6 @@ const Home = () => {
   }, [])
 
 
-
-
-
   useEffect(() => {
     if (activeCategory === 'All') {
       setDisplayedPlaces(places)
@@ -39,9 +33,6 @@ const Home = () => {
       setDisplayedPlaces(places.filter(place => place.category === activeCategory))
     }
   }, [places])
-
-
-
 
 
 
@@ -84,8 +75,6 @@ const Home = () => {
           title={'No exact matches'} 
           subtitle={'Try changing or removing some of your filters.'} />
         :
-
-        // grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6
         <div className="mt-8 grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3  2xl:grid-cols-4 gap-x-6 gap-y-8">
           {displayedPlaces?.map((place, index) => (
             <ListingPlaceCard key={index} listing={place}/>

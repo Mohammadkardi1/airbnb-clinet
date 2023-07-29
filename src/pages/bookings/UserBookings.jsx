@@ -2,17 +2,7 @@ import ListingBookingCard from "../../components/Listings/ListingBookingCard";
 
 
 
-const UserBookings = ({listings,currentUser}) => {
-
-  
-
-  // const dispatch = useDispatch()
-  // const {  clientBookings, loading } = useSelector(state => state.booking)
-
-  // useEffect(() => {
-  //   dispatch(getUserBookings())
-  // }, [])
-
+const UserBookings = ({listings}) => {
 
   
 
@@ -25,11 +15,6 @@ const UserBookings = ({listings,currentUser}) => {
           <ListingBookingCard
             key={listing?._id}
             listing={listing}
-            // actionId={listing.id}
-            // onAction={onDelete}
-            // disabled={deletingId === listing.id}
-            // actionLabel="Delete property"
-            // currentUser={currentUser}
           />
         ))}
       </div>

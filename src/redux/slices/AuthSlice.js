@@ -18,11 +18,6 @@ const AuthSlice = createSlice({
     name: "auth", 
     initialState,
     reducers: {
-        // loginGoogle: (state, action) => {
-        //     // const { sub: token, ...rest } = action?.payload;
-        //     localStorage.setItem('profile', JSON.stringify({ ...action?.payload }))
-        //     state.user = action?.payload
-        // },
         logout: (state) => {
             localStorage.clear()
             state.user = {}
@@ -116,8 +111,6 @@ const AuthSlice = createSlice({
             state.user = {}
             state.authError = action?.payload
         })
-
-
     }
 })
 

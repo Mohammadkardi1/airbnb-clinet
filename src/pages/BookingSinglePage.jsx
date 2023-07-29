@@ -10,7 +10,6 @@ const BookingPage = () => {
   const [booking, setBooking] = useState(null)
   const { bookings, loading } = useSelector(state => state.booking)
 
-  console.log('booking', booking)
   useEffect(() => {
     window.scrollTo(0, 0)
     const foundBooking  = bookings.find(booking => booking._id === id);
@@ -26,11 +25,7 @@ const BookingPage = () => {
       <PageLoadingModel/>
     :
     <div className="my-8">
-
-
-
         <h1 className="text-3xl">{booking?.place?.title}</h1>
-
         <a className='my-2 flex gap-1 font-semibold underline w-fit' target="_blank" href={`https://maps.google.com/?q${booking?.place?.address}`}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />

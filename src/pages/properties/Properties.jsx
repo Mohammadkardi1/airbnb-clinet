@@ -6,7 +6,6 @@ import EmptyState from "../../components/EmptyState"
 import { getUserplaces } from "../../redux/actions/PlaceActions"
 import UserPlaces from "./UserProperties"
 import SectionTitle from "../../components/SectionTitle"
-// import PropertiesClient from "./PropertiesClient"
 
 
 const UserProperties =  () => {
@@ -22,7 +21,6 @@ const UserProperties =  () => {
       return <PageLoadingModel isFixed={false}/>
     }
   
-
     if (placeError) {
       return <div>Error: {placeError}</div>
     }
@@ -43,8 +41,6 @@ const UserProperties =  () => {
         secondaryText={'List of your properties'}
       />
       <UserPlaces listings={places}/>
-
-
       <div className="text-center mt-16">
           <Link to={'/account/places/new'} className="inline-flex gap-1 bg-brand text-white py-2 px-6 rounded-full">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">

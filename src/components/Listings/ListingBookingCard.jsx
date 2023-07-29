@@ -11,9 +11,6 @@ const ListingBookingCard= ({ listing }) => {
     <>
     { listing && 
       <div className="relative">
-
-
-
         <Link to={`/place/${listing?.place?._id}`} 
           className="col-span-1 cursor-pointer group">
             
@@ -33,10 +30,6 @@ const ListingBookingCard= ({ listing }) => {
                     {`${listing?.place?.location?.region}, ${listing?.place?.location?.label}`}
                 </p>
             </div>
-
-
-
-
             <div className="flex gap-1  font-light text-neutral-500">
 
                 <div className="flex items-center gap-1">
@@ -48,12 +41,7 @@ const ListingBookingCard= ({ listing }) => {
                 <div className="flex items-center gap-1">
                     {format(new Date(parseInt(listing?.checkOut)), 'dd MMMM yyyy')}
                 </div>
-
             </div>
-
-
-
-
             <div className="flex gap-2 font-medium text-md">
                 <h1>
                     {listing?.numberOfNights} {listing?.numberOfNights > 1 ? "nights/" : "night/"}
@@ -62,19 +50,6 @@ const ListingBookingCard= ({ listing }) => {
                     ${listing?.price}
                 </p>
             </div>
-
-
-
-            {/* {onAction && actionLabel && (
-              <button
-                // disabled={disabled}
-                // small
-                // label={actionLabel} 
-                onClick={handleAction}
-              >
-                {actionLabel}
-              </button>
-            )} */}
           </div>
         </Link>
       </div>

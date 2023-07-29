@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux"
-import { Link } from 'react-router-dom'
 import EmptyState from '../../components/EmptyState'
 import PageLoadingModel from '../../components/Models/PageLoadingModel'
 import SectionTitle from '../../components/SectionTitle'
@@ -40,7 +39,6 @@ const Favorites = () => {
             title={'Favorites'}
             secondaryText={'List of places you have favorite'}
           />
-
           <UserFavorites listings={places}/>
       </>
   )

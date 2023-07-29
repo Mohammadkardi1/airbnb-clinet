@@ -1,11 +1,7 @@
 import React from 'react'
 import ListingBookingCard from '../../components/Listings/ListingBookingCard'
-import ListingPlaceCard from '../../components/Listings/ListingPlaceCard'
 
-const UserTrips = ({listings,currentUser}) => {
-
-
-
+const UserTrips = ({listings}) => {
 
   return (
     <div 
@@ -14,11 +10,6 @@ const UserTrips = ({listings,currentUser}) => {
         <ListingBookingCard
           key={listing?._id}
           listing={listing}
-          // actionId={listing.id}
-          // onAction={onDelete}
-          // disabled={deletingId === listing.id}
-          // actionLabel="Delete property"
-          // currentUser={currentUser}
         />
       ))}
     </div>

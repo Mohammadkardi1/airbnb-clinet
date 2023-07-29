@@ -27,31 +27,18 @@ import SectionTitle from "../components/SectionTitle";
 
 const PlacePage = () => {
   const {id} = useParams();
-  // const [place, setPlace] = useState({})
   const [nextItems, setNextItems] = useState(6)
   const dispatch = useDispatch()
-
-  
-
-  
   const {places, loading, placeFavorite} = useSelector((state) => state.place)
 
 
-
-
   useEffect(() => {
-    // window.scrollTo(0, 0)
-    // const foundPlace  = places.find(place => place._id === id)
-    // setPlace(foundPlace)
     dispatch(getPlace(id))
-
-
   }, []);
 
   
 
   const { getByValue } = useCountries()
-  // const location = getByValue(locationValue)
   const coordinates = getByValue(places[0]?.location?.value)?.latlng
 
   const loadMoreHandler = () => {
@@ -59,36 +46,25 @@ const PlacePage = () => {
   }
 
 
-
   return (
     <>
-      
     {loading  ?
     <PageLoadingModel isFixed={false}/>
     :
-
-
     <>
     {places[0]  &&
       <div className="mt-8">
-
       <SectionTitle
           title={places[0]?.title}
           secondaryText={`${places[0]?.location?.region}, ${places[0]?.location?.label}`}
         />
-
-
       <Gallery place={places[0]} />
-
-
-
       <div className="mt-8 mb-8 grid gap-8 grid-cols-1 lg:grid-cols-[2fr_1fr]">
 
 
 
         <div className="flex flex-col gap-8 mt-20 static z-[1]">
           <div className="flex flex-col gap-8">
-
             <div className=" space-y-2">
               <h1 className="text-xl font-semibold">Hosted by</h1>
               <div className="flex items-center gap-3">
@@ -107,23 +83,17 @@ const PlacePage = () => {
             </div>
           </div>
 
-
           <hr />
           <ListingCategory
               label={places[0]?.category}
             />
           <hr />
-
-
-
           <div>
                 <h2 className="font-semibold text-2xl mb-3">Description</h2>
                 <p className="text-lg font-light text-neutral-500">
                   {places[0]?.description}
                 </p>
           </div>
-
-
           {places[0]?.perks?.length > 0  &&
           <>
           <hr />
@@ -151,27 +121,12 @@ const PlacePage = () => {
           </>
           }
 
-
           <hr />
-
-
           <Map center={coordinates} />
-
-
         </div>
-
-
-
         <BookingForm place={places[0]} />
-
-
       </div>
-
-
       <ReviewForm placeID={places[0]?._id}/>
-
-
-
       {places[0]?.reviews?.length > 0 &&
       <>
       <div className="mt-12">
@@ -184,7 +139,6 @@ const PlacePage = () => {
           }
         </div>
       </div>
-
       <div className="flex justify-center">
         {places[0]?.reviews?.length >= 6 && places[0]?.reviews?.length > nextItems &&
         <button
@@ -200,13 +154,10 @@ const PlacePage = () => {
     }
     </>
     }
-
     {
       placeFavorite &&
       <PageLoadingModel/>
     }
-
-    
     </>
   );
 }

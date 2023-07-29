@@ -6,26 +6,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { createPlace, editPlace, getPlace } from "../../redux/actions/PlaceActions";
 import { PlaceActions } from "../../redux/slices/PlaceSlice";
 import {perk_items} from '../../assets/data/DataItems'
-import ListingPerks from "../Listings/ListingPerks";
 import Select from 'react-select'
 import useCountries from '../../hooks/useCountries'
 import PageLoadingModel from "../Models/PageLoadingModel";
 import PreInput from "../PreInput";
-// import "flag-icon-css/css/flag-icon.min.css";
 
 
-
-
-    
-
-// const preInput = (header,description) => {
-//     return (
-//     <>
-//         <h2 className="text-2xl">{header}</h2>
-//         <p className="text-gray-500 text-sm mb-1">{description}</p>
-//     </>
-//     )
-// }
 
 const PlaceForm = () => {
     const [searchParams, setSearchParams] = useSearchParams()
@@ -103,11 +89,9 @@ const PlaceForm = () => {
                 reset()
                 navigate('/account/properties')
             } catch (error) {
-                console.log("Error when uploading the image", error)
+                console.log(error)
             }
         } else {
-            console.log({...data, perks})
-
             try {
                 dispatch(editPlace({placeID: searchParams.get('placeId'), 
                 place: {...data, perks}}))
@@ -116,10 +100,6 @@ const PlaceForm = () => {
             } catch (error) {
                 console.log(error)
             }
-
-
-
-            console.log('update place')
         }
   }
 
@@ -127,8 +107,6 @@ const PlaceForm = () => {
 
   return (
     <>
-
-
         <form onSubmit={handleSubmit(savePlace)} className='space-y-6 my-12'>
             <div>
                 <PreInput
@@ -146,27 +124,6 @@ const PlaceForm = () => {
                     {errors.title?.message}.
                 </p>
             </div>
-            
-            {/* <div>
-                {preInput('Address', 'Address to this place')}
-                <input type="text" placeholder="e.g. 7 April Street"
-                    {...register('address', {
-                        required: 'Please enter the address'
-                    })}
-                />
-                <p className={`text-red-600 ${errors.address?.message ? 'visible' : 'invisible'}`}>
-                    {errors.address?.message}.
-                </p>
-            </div> */}
-            
-            
-            {/* {preInput('Photos','more = better')}
-            <PhotosUploader addedPhotos={addedPhotos} onChange={setAddedPhotos} /> */}
-            
-            
-
-
-
             <div>
                 <PreInput
                         header= {'Location'}
@@ -201,8 +158,6 @@ const PlaceForm = () => {
                     })}
                 />
             </div>
-
-
             <div>
                 <PreInput
                     header= {'Description'}
@@ -214,7 +169,6 @@ const PlaceForm = () => {
                     {errors.description?.message}.
                 </p>
             </div>
-
             {!searchParams.get('placeId') && 
             <div>
                 <PreInput
@@ -234,9 +188,6 @@ const PlaceForm = () => {
                 </p>
             </div>
             }
-            
-
-            
             <div>
                 <PreInput
                         header= {'Perks'}
@@ -255,8 +206,6 @@ const PlaceForm = () => {
                     ))}
                 </div>
             </div>
-            
-            
             <div>
                 <PreInput
                     header= {'Extra info'}
@@ -264,10 +213,6 @@ const PlaceForm = () => {
                     />
                 <textarea rows={4} {...register('extraInfo')}/>
             </div>
-
-
-
-
             <div>
                 <PreInput
                     header= {'Category'}
@@ -295,8 +240,6 @@ const PlaceForm = () => {
                     {errors.category?.message}.
                 </p>
             </div>
-
-
             <div>
                 <PreInput
                     header= {'Rooms & Bathrooms'}
@@ -311,7 +254,6 @@ const PlaceForm = () => {
                         </h3>
                         <input type="number" placeholder="2" {...register('rooms', {required: 'required'})}/>
                     </div>
-
                     <div>
                         <h3 className="mt-2 mb-2">Bathrooms
                             <span className={`text-red-600 ${errors.bathrooms?.message ? 'visible' : 'invisible'}`}>
@@ -320,7 +262,6 @@ const PlaceForm = () => {
                         </h3>
                         <input type="number" placeholder="1" {...register('bathrooms', {required: "required"})}/>
                     </div>
-
                     <div>
                         <h3 className="mt-2 mb-2">Max number of guests
                             <span className={`text-red-600 ${errors.maxGuests?.message ? 'visible' : 'invisible'}`}>
@@ -329,7 +270,6 @@ const PlaceForm = () => {
                         </h3>
                         <input type="number" {...register('maxGuests', {required: 'required'})}/>
                     </div>
-
                     <div>
                         <h3 className="mt-2 mb-2">Price per night
                             <span className={`text-red-600 ${errors.price?.message ? 'visible' : 'invisible'}`}>
@@ -340,9 +280,6 @@ const PlaceForm = () => {
                     </div>
                 </div>
             </div>
-
-
-
             <button className="primary py-4 my-4 w-full" type="submit" disabled={loading}>
                 {
                     loading ? 
@@ -352,7 +289,6 @@ const PlaceForm = () => {
                 }
             </button>
         </form>
-      
     </>
   );
 }

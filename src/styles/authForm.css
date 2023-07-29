@@ -4,7 +4,6 @@
     width: 100% !important;
     height: 1px !important;
     background-color: #6B7280 !important;
-    /* margin-right: 16px !important; */
 }
 
 .separate-line::after {
@@ -13,5 +12,4 @@
     width: 100% !important;
     height: 1px !important;
     background-color: #6B7280 !important;
-    /* margin-right: 16px !important; */
 }

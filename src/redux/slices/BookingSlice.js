@@ -9,8 +9,6 @@ const initialState = {
     bookings: [],
     futureBookings: [],
     pastBookings: [],
-    // trips: [],
-    // reservations: [],
     loading: false,
     bookingError: ''
 }
@@ -64,7 +62,6 @@ const bookingSlice = createSlice({
         })
         builder.addCase(getTrips.fulfilled, (state, action) => {
             state.loading = false
-            // state.bookings = action?.payload.data
             state.futureBookings = action?.payload.data.futureBookings
             state.pastBookings = action?.payload.data.pastBookings
             state.bookingError = ''
@@ -78,14 +75,12 @@ const bookingSlice = createSlice({
 
 
 
-        //getReservations -> getBookingsOnProperties
         builder.addCase(getBookingsOnProperties.pending, (state) => {
             state.loading = true
             state.bookingError = ''
         })
         builder.addCase(getBookingsOnProperties.fulfilled, (state, action) => {
             state.loading = false
-            // state.bookings = action?.payload.data
             state.futureBookings = action?.payload.data.futureBookings
             state.pastBookings = action?.payload.data.pastBookings
             state.bookingError = ''

@@ -10,7 +10,6 @@ import { useDispatch } from "react-redux";
 import { addBooking } from "../../redux/actions/BookingActions";
 import PageLoadingModel from "../Models/PageLoadingModel";
 import { MessageModel } from "../Models/MessageModel";
-import { useNavigate } from "react-router-dom";
 
 
 
@@ -18,7 +17,6 @@ import { useNavigate } from "react-router-dom";
 
 const BookingForm = ({place}) => {  
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const {register,  handleSubmit, formState: {errors}, reset} = useForm()
   const {user} = useSelector(state => state.auth)
   const {loading} = useSelector(state => state.booking)
@@ -94,8 +92,7 @@ const BookingForm = ({place}) => {
 
 
 
-  const handleBookingPlace = async (data) => {
-
+  const handleBookingPlace =  (data) => {
     if (!JSON.parse(localStorage.getItem('profile'))?._id ) {
       setIsModelOpen(true)
     } else {
@@ -109,30 +106,19 @@ const BookingForm = ({place}) => {
             checkIn:date[0]?.startDate.getTime(), 
             checkOut:date[0]?.endDate.getTime()}
       try {
-        await dispatch(addBooking(submitedData))
-        await dispatch(setUnavailableDates({placeID: place?._id, timestamps: timestampsArray }))
+        dispatch(addBooking(submitedData))
+        dispatch(setUnavailableDates({placeID: place?._id, timestamps: timestampsArray }))
         reset()
         setInitialDate()
-        // navigate('/account/trips')
       } catch (error) {
-        console.log('something went error', error)
+        console.log(error)
       }
     }
   }
 
 
 
-  // const setNextDate = () => {
-  //   const newDate = new Date(date[0].endDate)
-  //   while (true) {
-  //     newDate.setDate(newDate.getDate() + 1)
-  //     const isNewDateInDisabledArray = disabledDates?.some((date) => date.getTime() === newDate.getTime())
-  //     if (!isNewDateInDisabledArray) {
-  //       setDate([{ ...date[0], startDate: newDate, endDate: newDate }])
-  //       break
-  //     }
-  //   }
-  // }
+
 
 
 
@@ -141,12 +127,9 @@ const BookingForm = ({place}) => {
     <form 
       className="flex flex-col gap-4 bg-white shadow p-4 rounded-2xl"
       onSubmit={handleSubmit(handleBookingPlace)}>
-
       <div className="text-2xl text-center">
         Price: ${place?.price} / per night
       </div>
-
-
       <div className=" w-full">
         <DateRange
             editableDateInputs={true}
@@ -160,15 +143,10 @@ const BookingForm = ({place}) => {
             dayContentRenderer={dayContentRenderer}
             />
       </div>
-
       <div className="flex flex-row items-center justify-between font-semibold text-lg">
         <div>Total</div>
         <div>${numberOfNights * place?.price}</div>
       </div>
-
-
-
-
       <div>
         <label>Number of guests</label>
         <input 
@@ -194,9 +172,6 @@ const BookingForm = ({place}) => {
             {errors.guests?.message}.
         </p>
       </div>
-
-
-
       <div>
         <label>Your full name</label>
         <input 
@@ -218,9 +193,6 @@ const BookingForm = ({place}) => {
             {errors.name?.message}.
         </p>
       </div>
-
-
-
       <div>
         <label>Phone number</label>
         <input 
@@ -236,9 +208,6 @@ const BookingForm = ({place}) => {
           {errors.phone?.message}.
         </p>
       </div>
-
-
-
       <button className="primary w-full mt-4 py-4" disabled={loading}>
         {
             loading ? 
@@ -251,15 +220,11 @@ const BookingForm = ({place}) => {
         }
       </button>
     </form>
-
-
     <MessageModel
         isModelOpen={isModelOpen} 
         setIsModelOpen={setIsModelOpen} 
         message="Please login."
         />
-    
-    
     </>
   );
 }

@@ -19,29 +19,12 @@ export const googleLogin = (userInfo) => API.post('/api/auth/googleLogin', userI
 
 
 
-
 export const getAllPlaces = () => API.get('/api/place/allPlaces')
 export const getPlace = (id) => API.get(`/api/place/getPlace/${id}`)
-
-
-
 export const getPlacesBySearch = (searchQuery) => API.get(`/api/place/search?searchQuery=${searchQuery}` )
-
-
-
-
 export const getUserplaces = () => API.get('/api/place/userPlaces' )
-
-
-
-
 export const createPlace = (placeInfo) => API.post('/api/place/addPlace', placeInfo)
-
-
 export const removePlace = (placeID) => API.delete(`/api/place/removePlace/${placeID}`)
-
-
-
 export const setUnavailableDates = (placeID, timestamps) => API.patch(`/api/place/unavailableDates/${placeID}`, {timestamps})
 export const favoritePlace = (placeID) => API.patch(`/api/place/favoritePlace/${placeID}`)
 export const getFavoritePlaces = () => API.get(`/api/place/getFavoritePlaces`)
@@ -49,14 +32,8 @@ export const reviewPlace = (placeID, review) => API.post(`/api/place/reviewPlace
 export const editPlace = (placeID, place) => API.patch(`/api/place/editPlace/${placeID}`, place)
 
 
-
-
 export const getAllBookings = () => API.get('/api/booking/allBookings')
 export const addBooking = (bookingInfo) => API.post('/api/booking/addBooking', bookingInfo)
 export const getTrips = () => API.get('/api/booking/trips' )
 export const getBookingsOnProperties = () => API.get('/api/booking/bookingsOnProperties' )
-
-
-
-
 

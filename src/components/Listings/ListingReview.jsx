@@ -17,32 +17,21 @@ const ListingReview = ({review}) => {
 
   return (
     <div className="grid  gap-4"  style={{gridTemplateColumns: '40px auto'}}>
-
-
         <div className=" flex justify-center items-center">
             <Avatar src={review?.user?.picture} alt={review?.user?.username} />
         </div>
-
-
         <div>
             <h6 className='text-xl font-semibold'>
                 {review?.user?.username}
             </h6>
-
             <div className='flex items-center gap-1  font-semibold text-orange-600'>
                 {starIcons}
             </div>
         </div>
-
-
         <div></div>
-
-
         <div>
             {review?.comment}
         </div>
-
-
     </div>
   )
 }

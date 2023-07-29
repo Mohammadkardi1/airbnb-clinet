@@ -1,5 +1,4 @@
-import {useEffect, useState} from "react";
-// import Image from "./Image.jsx";
+import { useState} from "react";
 import HeartButton from './HeartButton'
 import GalleryOverlay from "./GalleryOverlay";
 import {BsChevronCompactLeft, BsChevronCompactRight} from 'react-icons/bs'
@@ -10,14 +9,6 @@ const Gallery = ({place}) => {
 
   const [showAllPhotos,setShowAllPhotos] = useState(false)
   const [currentIndex, setCurrentIndex] = useState(0)
-
-  console.log('place', place)
-
-
-
-  // const [value, setValue] = useState(0)
-  // const {mainImage} = products[value]
-
 
 
   if (showAllPhotos) {
@@ -41,21 +32,15 @@ const Gallery = ({place}) => {
     <div className="h-[780px] w-full m-auto relative group">
       <div style={{backgroundImage: `url(${place?.photos[currentIndex]?.url})`}}
         className="w-full h-full rounded-2xl bg-center bg-cover duration-500">
-        
       </div>
-
       <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl
                rounded-full p-2 bg-black/50  text-white cursor-pointer">
         <BsChevronCompactLeft onClick={prevSlide} size={30}/>
       </div>
-
-
       <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl
                rounded-full p-2 bg-black/50  text-white cursor-pointer">
         <BsChevronCompactRight onClick={nextSlide} size={30}/>
       </div>
-
-
       {place?.photos?.length > 1 &&
       <div className="w-full flex justify-center absolute text-gray-200 bottom-5">
         {place?.photos?.map((photo, index) => (
@@ -70,9 +55,6 @@ const Gallery = ({place}) => {
         ))}
       </div>
     }
-
-
-
         <div className="absolute top-5 right-5">
          <HeartButton
            listingId={place?._id}
@@ -85,8 +67,6 @@ const Gallery = ({place}) => {
          </svg>
          Show all photos
        </button>
-
-
     </div>
     }
     </>

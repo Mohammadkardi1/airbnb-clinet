@@ -11,7 +11,6 @@ const GalleryOverlay = ({place, setShowAllPhotos}) => {
         <>
         {place &&
         <div className="absolute inset-0 z-20 pt-24 px-4 md:px-0 bg-black text-white w-full">
-
             <div className='flex flex-col items-center bg-black pb-8'>
                 <div className=" space-y-4">
                     <h2 className="text-left text-xl lg:text-3xl text-neutral-100">

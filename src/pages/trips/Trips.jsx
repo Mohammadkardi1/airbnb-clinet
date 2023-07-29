@@ -12,29 +12,22 @@ import { MdKeyboardDoubleArrowRight } from 'react-icons/md';
 
 
 const Trips = () => {
-
-
   const dispatch = useDispatch()
   const {loading, futureBookings, pastBookings, bookingError} = useSelector(state => state.booking)
 
 
-
   useEffect(() => {
     dispatch(getTrips())
-
   }, [])
-
 
 
   if (loading) {
     return <PageLoadingModel isFixed={false} />
   }
 
-
   if (bookingError) {
     return <div>Error: {bookingError}</div>
   }
-
 
   if (futureBookings?.length === 0 && pastBookings?.length === 0) {
     return (
@@ -54,7 +47,6 @@ const Trips = () => {
           secondaryText={'Where you have been and where you are going'}
         />
 
-
         {futureBookings?.length > 0 &&
         <>
           <div className='flex items-center gap-1 font-semibold'>
@@ -66,7 +58,6 @@ const Trips = () => {
           <UserTrips listings={futureBookings}/>
         </>
         }
-
 
         <div className=' mt-20'></div>
         {pastBookings?.length > 0 &&

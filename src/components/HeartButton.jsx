@@ -13,9 +13,9 @@ const HeartButton = ({ listingId, favorites}) => {
   
 
 
-  const favoriteHandler = async () => {
+  const favoriteHandler = () => {
     try {
-      await dispatch(favoritePlace(listingId))
+      dispatch(favoritePlace(listingId))
     } catch (error) {
       console.log(error)
     }
@@ -23,7 +23,6 @@ const HeartButton = ({ listingId, favorites}) => {
 
   return (
     <div 
-      // onClick={toggleFavorite}
       onClick={favoriteHandler}
       className="relative hover:opacity-80 transition cursor-pointer">
 
@@ -33,13 +32,9 @@ const HeartButton = ({ listingId, favorites}) => {
         
       <AiFillHeart
         size={24}
-        // className={hasFavorited ? 'fill-rose-500' : 'fill-neutral-500/70'}
         className={favorites?.includes(currentUser) ? 'fill-rose-500' : 'fill-neutral-500/70'}
         />
-
     </div>
-
-
    );
 }
  

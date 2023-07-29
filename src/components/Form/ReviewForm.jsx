@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react'
-import StarRateOutlinedIcon from '@mui/icons-material/StarRateOutlined';
 import StarRateIcon from '@mui/icons-material/StarRate';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,15 +14,13 @@ const ReviewForm = ({placeID}) => {
     const [rateValue, setRateValue ] = useState(1)
     const [isModelOpen, setIsModelOpen] = useState(false)
 
-    // const [rating, setRating] = useState(null)
-
     const reviewMsg = useRef('')
 
     const {placeReviewing} = useSelector(state => state.place)
 
 
 
-    const submithandler = async (e) => {
+    const submithandler =  (e) => {
         e.preventDefault()
         if (!JSON.parse(localStorage.getItem('profile'))?._id ) {
             setIsModelOpen(true)
@@ -33,7 +30,7 @@ const ReviewForm = ({placeID}) => {
                 rating: rateValue,
             }
             try {
-                await dispatch(reviewPlace({ placeID, review}))
+                dispatch(reviewPlace({ placeID, review}))
             } catch (error) {
                 console.log(error)
             }
@@ -58,13 +55,7 @@ const ReviewForm = ({placeID}) => {
                     </div>
                     ))
                 }
-
-
             </div>
-
-
-
-
             <div>
                 <textarea 
                     rows={4} 
@@ -73,11 +64,6 @@ const ReviewForm = ({placeID}) => {
                     ref={reviewMsg}
                     required/>
             </div>
-
-
-
-
-
             <button className="primary px-8 py-4" type='submit' disabled={placeReviewing}>
                 {
                     placeReviewing ? 
@@ -89,11 +75,7 @@ const ReviewForm = ({placeID}) => {
                     </div>
                 }
             </button>
-
-
         </form>
-
-
         <MessageModel
             isModelOpen={isModelOpen} 
             setIsModelOpen={setIsModelOpen} 

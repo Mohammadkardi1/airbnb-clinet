@@ -1,9 +1,5 @@
 import React from 'react'
-// import CloseIcon from '@mui/icons-material/Close';
 import { AiOutlineClose } from "react-icons/ai";
-
-
-
 
 
 export const MessageModel = ({isModelOpen, setIsModelOpen, message}) => {
