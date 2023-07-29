@@ -17,7 +17,7 @@ const ListingPlaceCard= ({listing, activateActions = false, handleAction, action
   const reviewSum = listing?.reviews?.reduce((accumulator, currentValue) => 
       accumulator + currentValue.rating, 0)
 
-  const reviewAvg = listing?.reviews?.length > 0 ? (reviewSum / listing?.reviews?.length).toFixed(2) : 0;
+  const reviewAvg = listing?.reviews?.length > 0 ? (reviewSum / listing?.reviews?.length).toFixed(1) : 0;
 
 
   const deleteHandler = async () => {
