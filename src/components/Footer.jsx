@@ -9,19 +9,19 @@ const Footer = () => {
 
   const social_links = [
     {
-        icon: <AiFillGithub/>,
+        icon: <AiFillGithub className='w-[1.8rem] h-[1.8rem] lg:w-[2rem] lg:h-[2rem]'/>,
         link : "https://github.com/Mohammadkardi1"
     }, 
     {
-        icon: <AiFillLinkedin/>,
+        icon: <AiFillLinkedin className='w-[1.8rem] h-[1.8rem] lg:w-[2rem] lg:h-[2rem]'/>,
         link : "https://www.linkedin.com/in/mohammad-kardi/"
     }, 
     {
-        icon: <AiFillFacebook/>,
+        icon: <AiFillFacebook className='w-[1.8rem] h-[1.8rem] lg:w-[2rem] lg:h-[2rem]'/>,
         link : "https://www.facebook.com/profile.php?id=100006621041867"
     }, 
     {
-        icon: <BsTelegram/>,
+        icon: <BsTelegram className='w-[1.8rem] h-[1.8rem] lg:w-[2rem] lg:h-[2rem]'/>,
         link : "https://t.me/Mohammad71223"
     }, 
 ]
@@ -31,13 +31,13 @@ const Footer = () => {
   return (
     <div className='mt-auto'>
       <Container>
-        <div className='flex flex-col items-center gap-y-4 lg:flex-row lg:justify-between mt-16 py-6 border-t border-gray-600'>
+        <div className='text-[1rem] lg:text-[1.2rem] flex flex-col items-center gap-y-4 lg:flex-row lg:justify-between mt-16 py-6 border-t border-gray-600'>
             <p className=' text-center font-medium'>
                 Copyright &copy; 2023 developed by Mohammad Kardi. All rights reserved.
             </p>
-            <ul className='p-0 m-0 flex gap-1 sm:gap-3'>
+            <ul className='p-0 m-0 flex gap-3 sm:gap-3'>
                 {social_links.map((item, index) => (
-                      <li key={index} >
+                      <li key={index}>
                           <a 
                               className='hover:opacity-70 text-xl lg:text-2xl text-[color:var(--primary-color-two)]'
                               href={item.link} 

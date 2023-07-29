@@ -56,7 +56,8 @@ const Gallery = ({place}) => {
       </div>
 
 
-      <div className="flex absolute text-gray-200 bottom-5 right-[40%]">
+      {place?.photos?.length > 1 &&
+      <div className="w-full flex justify-center absolute text-gray-200 bottom-5">
         {place?.photos?.map((photo, index) => (
           <div key={index} onClick={() => setCurrentIndex(index)} className='text-2xl cursor-pointer'>
             {
@@ -68,7 +69,7 @@ const Gallery = ({place}) => {
           </div>
         ))}
       </div>
-
+    }
 
 
 

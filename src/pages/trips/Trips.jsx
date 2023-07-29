@@ -53,17 +53,21 @@ const Trips = () => {
           title={'Trips'}
           secondaryText={'Where you have been and where you are going'}
         />
+
+
         {futureBookings?.length > 0 &&
         <>
-        <div className='flex items-center gap-1 font-semibold'>
-          <MdKeyboardDoubleArrowRight size={34}/>
-          <PreInput 
-              header= 'Future Trips'
-            />
+          <div className='flex items-center gap-1 font-semibold'>
+            <MdKeyboardDoubleArrowRight size={34}/>
+            <PreInput 
+                header= 'Future Trips'
+              />
           </div>
           <UserTrips listings={futureBookings}/>
         </>
         }
+
+
         <div className=' mt-20'></div>
         {pastBookings?.length > 0 &&
         <>

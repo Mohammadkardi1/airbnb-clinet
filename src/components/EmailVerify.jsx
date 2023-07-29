@@ -30,10 +30,10 @@ const EmailVerify = () => {
 			loading  ?
 				<PageLoadingModel/>
 			:
-			<div className='w-full h-[800px] flex flex-col gap-6 items-center justify-center  font-bold text-2xl '>
+			<div className='w-full h-[500px] lg:h-[800px] flex flex-col gap-6 items-center justify-center  font-bold text-2xl '>
 				{isVerified ? (
 					<>
-						<img src={success} alt="success_img" className='w-[350px]' />
+						<img src={success} alt="success_img" className='w-[250px] lg:w-[350px]' />
 						<h1>
 							Email verified successfully! Please Log in.
 						</h1>
@@ -43,7 +43,7 @@ const EmailVerify = () => {
 					</>
 				) : (
 					<>
-						<img src={failure} alt="success_img" className='w-[350px]' />
+						<img src={failure} alt="success_img" className='w-[250px] lg:w-[350px]' />
 						<h1>
 							{authError}
 						</h1>

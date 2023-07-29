@@ -78,6 +78,17 @@ const UserMenu = () => {
     <>
     <div className="userMenuModel flex items-center gap-2 border border-gray-300 rounded-full py-2 px-4 cursor-pointer hover:bg-gray-300 transition"
         onClick={() => setIsOpen(!isOpen)}>
+
+
+
+        {/* <div className={`${user?.picture ? null : 'border-gray-500'} bg-gray-500 text-white rounded-full border  overflow-hidden`}> */}
+                <Avatar src={user?.picture} alt={user?.username} />
+        {/* </div> */}
+        {user && (
+            <div>
+            {user.username?.split(' ')[0]}
+            </div>
+        )}
                 
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -85,14 +96,7 @@ const UserMenu = () => {
 
 
 
-        {/* <div className={`${user?.picture ? null : 'border-gray-500'} bg-gray-500 text-white rounded-full border  overflow-hidden`}> */}
-            <Avatar src={user?.picture} alt={user?.username} />
-        {/* </div> */}
-        {user && (
-            <div>
-            {user.username?.split(' ')[0]}
-            </div>
-        )}
+
 
         
     </div>
