@@ -11,19 +11,19 @@ import decode from 'jwt-decode';
 function App() {
   const dispatch = useDispatch()
 
-  useEffect( async () => {
+  useEffect(() => {
     const token = JSON.parse(localStorage.getItem('profile'))?.token;
     if (token) {
       const decodedToken = decode(token);
       if (decodedToken.exp * 1000 < new Date().getTime()) {
         try {
-          await dispatch(AuthActions.logout())
+          dispatch(AuthActions.logout())
         } catch (error) {
             console.log(error)
         }
       } else {
         try {
-          await dispatch(AuthActions.loginByToken())
+          dispatch(AuthActions.loginByToken())
         } catch (error) {
           console.log(error)
         }

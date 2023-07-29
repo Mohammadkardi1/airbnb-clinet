@@ -68,7 +68,6 @@ const PlaceForm = () => {
       }
 
     const savePlace = async (data) => {
-        console.log(data)
         if (!isUpdated) {
             try {
                 await dispatch(PlaceActions.setLoading(true))
