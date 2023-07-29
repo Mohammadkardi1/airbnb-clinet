@@ -80,7 +80,7 @@ const PlaceForm = () => {
                     const { url, public_id } = uploadRes.data
                     uploadedImagesURL.push({url, public_id})
                 }
-                awaitdispatch(createPlace({
+                await dispatch(createPlace({
                         ...data, 
                         perks, 
                         photos: uploadedImagesURL,
