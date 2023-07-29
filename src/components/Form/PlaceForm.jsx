@@ -26,10 +26,10 @@ const PlaceForm = () => {
 
     
     
-    useEffect(() => {
+    useEffect( async () => {
         if (isUpdated) {
             try {
-                dispatch(getPlace(searchParams.get('placeId')))
+                await dispatch(getPlace(searchParams.get('placeId')))
             } catch (error) {
                 console.log(error)
             }
@@ -70,7 +70,7 @@ const PlaceForm = () => {
         console.log(data)
         if (!isUpdated) {
             try {
-                dispatch(PlaceActions.setLoading(true))
+                await dispatch(PlaceActions.setLoading(true))
                 const uploadedImagesURL = []
                 for (let i = 0; i < data.photos.length; i++) {
                     const image = new FormData()
@@ -80,7 +80,7 @@ const PlaceForm = () => {
                     const { url, public_id } = uploadRes.data
                     uploadedImagesURL.push({url, public_id})
                 }
-                dispatch(createPlace({
+                awaitdispatch(createPlace({
                         ...data, 
                         perks, 
                         photos: uploadedImagesURL,
@@ -93,7 +93,7 @@ const PlaceForm = () => {
             }
         } else {
             try {
-                dispatch(editPlace({placeID: searchParams.get('placeId'), 
+                await dispatch(editPlace({placeID: searchParams.get('placeId'), 
                 place: {...data, perks}}))
                 reset()
                 navigate('/account/properties')

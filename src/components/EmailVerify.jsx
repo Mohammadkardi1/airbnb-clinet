@@ -15,9 +15,9 @@ const EmailVerify = () => {
 	const dispatch = useDispatch()
 
 
-	useEffect(() => {
+	useEffect( async () => {
 		try {
-			dispatch(verifyEmail({id: param.id, token: param.token}))
+			await dispatch(verifyEmail({id: param.id, token: param.token}))
 		} catch (error) {
 			console.log(error)
 		}

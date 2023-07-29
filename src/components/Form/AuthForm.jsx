@@ -48,19 +48,19 @@ const AuthForm = ({type}) => {
     const redirectPath = location.state?.path || '/home'
 
 
-    useEffect(() => {
+    useEffect( async () => {
         try {
             reset()
-            dispatch(AuthActions.clearAuthError())
+            await dispatch(AuthActions.clearAuthError())
         } catch (error) {
             console.log(error)
         }
     }, [location])
 
-    const handleRegisterUser = (data) => {
+    const handleRegisterUser = async (data) => {
         if (type === 'register') {
             try {
-                const res = dispatch(registerUser(data))
+                const res = await dispatch(registerUser(data))
                 if (!res.error) {
                     navigate(redirectPath, {replace :true})
                   }
@@ -69,7 +69,7 @@ const AuthForm = ({type}) => {
             }
         } else {
             try {
-                const res =  dispatch(loginUser(data))
+                const res =  await dispatch(loginUser(data))
                 if (!res.error) {
                     navigate(redirectPath, {replace :true})
                   }
@@ -80,11 +80,11 @@ const AuthForm = ({type}) => {
     }
 
 
-    const googleSuccess = (res) => {
+    const googleSuccess = async (res) => {
         const {email, name: username, picture } = jwt_decode(res.credential)
 
         try {
-            const res =  dispatch(googleLogin({email, username, picture}))
+            const res = await dispatch(googleLogin({email, username, picture}))
             if (!res.error) {
                 navigate(redirectPath, {replace :true})
                 }
@@ -97,9 +97,9 @@ const AuthForm = ({type}) => {
         console.log(error)
       }
 
-    const resendVerificationHandler =  () => {
+    const resendVerificationHandler = async () => {
         try {
-            dispatch(resendVerification(watch('email')))
+            await dispatch(resendVerification(watch('email')))
         } catch (error) {
             console.log(error)
         }

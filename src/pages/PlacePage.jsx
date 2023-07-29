@@ -32,8 +32,8 @@ const PlacePage = () => {
   const {places, loading, placeFavorite} = useSelector((state) => state.place)
 
 
-  useEffect(() => {
-    dispatch(getPlace(id))
+  useEffect( async () => {
+    await dispatch(getPlace(id))
   }, []);
 
   

@@ -20,9 +20,9 @@ const ListingPlaceCard= ({listing, activateActions = false, handleAction, action
   const reviewAvg = listing?.reviews?.length > 0 ? (reviewSum / listing?.reviews?.length).toFixed(2) : 0;
 
 
-  const deleteHandler = () => {
+  const deleteHandler = async () => {
     try {
-      dispatch(removePlace(listing?._id))
+      await dispatch(removePlace(listing?._id))
     } catch (error) {
       console.log(error)
     }

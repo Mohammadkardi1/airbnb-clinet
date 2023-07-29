@@ -17,9 +17,9 @@ const Home = () => {
 
 
 
-  useEffect(() => {
+  useEffect( async () => {
     try {
-      dispatch(getAllPlaces())
+      await dispatch(getAllPlaces())
     } catch (error) {
       console.log(error)
     }

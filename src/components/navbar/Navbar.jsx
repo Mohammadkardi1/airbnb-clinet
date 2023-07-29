@@ -13,9 +13,9 @@ const Navbar = () => {
   const location = useLocation()
 
 
-  const filterPlacesBySearch = () => {
+  const filterPlacesBySearch = async () => {
     try {
-      dispatch(getPlacesBySearch(inputRef.current.value))
+      await dispatch(getPlacesBySearch(inputRef.current.value))
     } catch (error) {
       console.log(error)
     }

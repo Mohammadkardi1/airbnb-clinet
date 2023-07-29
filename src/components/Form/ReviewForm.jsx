@@ -20,7 +20,7 @@ const ReviewForm = ({placeID}) => {
 
 
 
-    const submithandler =  (e) => {
+    const submithandler = async  (e) => {
         e.preventDefault()
         if (!JSON.parse(localStorage.getItem('profile'))?._id ) {
             setIsModelOpen(true)
@@ -30,7 +30,7 @@ const ReviewForm = ({placeID}) => {
                 rating: rateValue,
             }
             try {
-                dispatch(reviewPlace({ placeID, review}))
+                await dispatch(reviewPlace({ placeID, review}))
             } catch (error) {
                 console.log(error)
             }

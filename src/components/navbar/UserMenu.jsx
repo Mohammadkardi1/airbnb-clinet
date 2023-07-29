@@ -39,9 +39,9 @@ const UserMenu = () => {
     const {user} = useSelector(state => state.auth)
     const [isOpen, setIsOpen] = useState(false);
 
-    const logout =  () => {
+    const logout = async () => {
         try {
-            dispatch(AuthActions.logout())
+            await dispatch(AuthActions.logout())
             navigate('/home')
         } catch (error) {
             console.log(error)

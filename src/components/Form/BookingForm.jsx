@@ -92,7 +92,7 @@ const BookingForm = ({place}) => {
 
 
 
-  const handleBookingPlace =  (data) => {
+  const handleBookingPlace = async (data) => {
     if (!JSON.parse(localStorage.getItem('profile'))?._id ) {
       setIsModelOpen(true)
     } else {
@@ -106,8 +106,8 @@ const BookingForm = ({place}) => {
             checkIn:date[0]?.startDate.getTime(), 
             checkOut:date[0]?.endDate.getTime()}
       try {
-        dispatch(addBooking(submitedData))
-        dispatch(setUnavailableDates({placeID: place?._id, timestamps: timestampsArray }))
+        await dispatch(addBooking(submitedData))
+        await dispatch(setUnavailableDates({placeID: place?._id, timestamps: timestampsArray }))
         reset()
         setInitialDate()
       } catch (error) {

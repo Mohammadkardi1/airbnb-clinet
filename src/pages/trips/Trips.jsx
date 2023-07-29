@@ -16,8 +16,8 @@ const Trips = () => {
   const {loading, futureBookings, pastBookings, bookingError} = useSelector(state => state.booking)
 
 
-  useEffect(() => {
-    dispatch(getTrips())
+  useEffect( async () => {
+    await dispatch(getTrips())
   }, [])
 
 

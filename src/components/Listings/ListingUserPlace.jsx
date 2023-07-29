@@ -13,10 +13,10 @@ const ListingUserPlace = ({place}) => {
       }
 
 
-    const removePlaceHandler =  (event, id) => {
+    const removePlaceHandler = async (event, id) => {
         event.stopPropagation()
         try {
-        dispatch(removePlace(id))
+        await dispatch(removePlace(id))
         } catch (error) {
           console.log('something went wrong')
         }

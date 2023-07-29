@@ -12,8 +12,8 @@ const UserProperties =  () => {
     const dispatch = useDispatch()
     const {loading, places, placeError} = useSelector(state => state.place)
       
-    useEffect(() => {
-      dispatch(getUserplaces())
+    useEffect( async () => {
+      await dispatch(getUserplaces())
     }, [])
 
 
