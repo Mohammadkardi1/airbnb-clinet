@@ -7,6 +7,9 @@ import { getUserplaces } from '../../redux/actions/PlaceActions';
 import { getBookingsOnProperties } from '../../redux/actions/BookingActions';
 
 
+
+
+
 const Profile = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -16,7 +19,7 @@ const Profile = () => {
 
     const { user } = useSelector(state => state.auth)
     const { places } = useSelector(state => state.place)
-    const { bookings } = useSelector(state => state.booking)
+    const { futureBookings, pastBookings } = useSelector(state => state.booking)
 
 
     
@@ -44,41 +47,36 @@ const Profile = () => {
 
       }
 
+      const listInfo = ({title, info}) => {
+        return (
+            <div>
+                <p className='text-xl font-bold'>{title}</p>
+                <p className='text-lg'>{info}</p>
+            </div>
+        )
+    }
 
   return (
     <div className="flex justify-center ">
-        <div className='w-[600px] space-y-4 text-base border-2 border-black rounded-lg p-4'>
+        <div className='w-[600px] space-y-8 text-base rounded-lg p-4'>
 
             <div className='flex justify-center'>
                 <Avatar src={user?.picture} alt= {user?.username} height={"100px"} />
             </div>
 
-            <div className='flex justify-between'>
-                <p>Username:</p>
-                <p>{user?.username}</p>
-            </div>
 
-            <div className='flex justify-between'>
-                <p>Email:</p>
-                <p>{user?.email}</p>
-            </div>
+            {listInfo({ title: 'Username', info: user?.username })}
 
-            <div className='flex justify-between'>
-                <p>NO. your properties:</p>
-                <p>{places?.length}</p>
-            </div>
+            {listInfo({ title: 'Email', info: user?.email })}
 
-            <div className='flex justify-between'>
-                <p>NO. Bookings on your own properties:</p>
-                <p>{bookings?.length}</p>
-            </div>
+            {listInfo({ title: 'NO. your properties', info: places?.length })} 
 
-            <div className='pt-8 space-y-4'>
-                <button className='block'>
-                    Change Password
-                </button> 
+            {listInfo({ title: 'NO. Bookings on your own properties', info: futureBookings?.length + pastBookings?.length })}
 
-                <button className='block'>
+
+
+            <div className='flex justify-center pt-8'>
+                <button className='primary px-2 py-3 text-xl font-bold' onClick={logout}>
                     Logout
                 </button> 
             </div>
