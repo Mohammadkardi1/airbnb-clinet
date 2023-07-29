@@ -12,8 +12,9 @@ const Favorites = () => {
   const dispatch = useDispatch()
   const {loading, places, placeError} = useSelector(state => state.place)
 
-  useEffect( async () => {
-    await dispatch(getFavoritePlaces())
+
+  useEffect(() => {
+    dispatch(getFavoritePlaces())
   }, [])
 
 

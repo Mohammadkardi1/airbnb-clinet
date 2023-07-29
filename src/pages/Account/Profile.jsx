@@ -21,10 +21,10 @@ const Profile = () => {
     
 
 
-    useEffect( async () => {
-        await dispatch(getUserplaces())
-        await dispatch(getBookingsOnProperties())
 
+    useEffect(() => {
+        dispatch(getUserplaces())
+        dispatch(getBookingsOnProperties())
       }, [])
 
 

@@ -12,9 +12,10 @@ const UserProperties =  () => {
     const dispatch = useDispatch()
     const {loading, places, placeError} = useSelector(state => state.place)
       
-    useEffect( async () => {
-      await dispatch(getUserplaces())
+    useEffect(() => {
+      dispatch(getUserplaces())
     }, [])
+
 
 
     if (loading) {

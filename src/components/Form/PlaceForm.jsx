@@ -25,11 +25,12 @@ const PlaceForm = () => {
     const isUpdated = Boolean(searchParams.get('placeId'));
 
     
+
     
-    useEffect( async () => {
+    useEffect(() => {
         if (isUpdated) {
             try {
-                await dispatch(getPlace(searchParams.get('placeId')))
+                dispatch(getPlace(searchParams.get('placeId')))
             } catch (error) {
                 console.log(error)
             }

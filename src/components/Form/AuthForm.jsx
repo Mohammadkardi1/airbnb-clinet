@@ -48,10 +48,10 @@ const AuthForm = ({type}) => {
     const redirectPath = location.state?.path || '/home'
 
 
-    useEffect( async () => {
+    useEffect(() => {
         try {
             reset()
-            await dispatch(AuthActions.clearAuthError())
+            dispatch(AuthActions.clearAuthError())
         } catch (error) {
             console.log(error)
         }
