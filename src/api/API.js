@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 
-const API = axios.create({baseURL: 'https://airbnb-api-opal.vercel.app/'})
+const API = axios.create({baseURL: 'https://airbnb-api-3747.vercel.app/'})
 
 // add the following headers to each outgoing HTTP request
 API.interceptors.request.use((req) => {
