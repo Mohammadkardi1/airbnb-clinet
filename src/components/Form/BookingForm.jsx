@@ -24,6 +24,8 @@ const BookingForm = ({place}) => {
   const [numberOfNights, setNumberOfNights] = useState(0)
   const today = new Date()
 
+
+
   const [isModelOpen, setIsModelOpen] = useState(false)
 
 
