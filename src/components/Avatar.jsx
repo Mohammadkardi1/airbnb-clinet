@@ -2,7 +2,7 @@
 
 const Avatar = ({ src, alt, height="35px" }) => {
   return ( 
-    <div className=" hidden sm:block"
+    <div
          style={{"height": height}}>
         {src ? 
             <img 
