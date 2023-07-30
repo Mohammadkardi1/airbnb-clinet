@@ -24,35 +24,33 @@ const EmailVerify = () => {
 		}
 	}, [])
 
+	if (loading) {
+		return <PageLoadingModel/>
+	}
+	
+
 
 	return (
-		<>
-			{
-			loading  ?
-				<PageLoadingModel/>
-			:
-			<div className='w-full h-[500px] lg:h-[800px] flex flex-col gap-6 items-center justify-center  font-bold text-2xl '>
-				{isVerified ? (
-					<>
-						<img src={success} alt="success_img" className='w-[250px] lg:w-[350px]' />
-						<h1>
-							Email verified successfully! Please Log in.
-						</h1>
-						<Link to="/login">
-							<button className='primary px-12'>Login</button>
-						</Link>
-					</>
+		<div className='w-full h-[500px] lg:h-[800px] flex flex-col gap-6 items-center justify-center font-bold'>
+			{isVerified ? (
+				<>
+					<img src={success} alt="success_img" className='w-[250px] lg:w-[350px]' />
+					<h1 className="plain-title">
+						Email verified successfully! Please Log in.
+					</h1>
+					<Link to="/login">
+						<button className='primary px-12'>Login</button>
+					</Link>
+				</>
 				) : (
-					<>
-						<img src={failure} alt="success_img" className='w-[250px] lg:w-[350px]' />
-						<h1>
-							{authError}
-						</h1>
-					</>
-				)}
-			</div>
-			}
-		</>
+				<>
+					<img src={failure} alt="failure_img" className='w-[250px] lg:w-[350px]' />
+					<h1 className="plain-title">
+						{authError}
+					</h1>
+				</>
+			)}
+		</div>
 	);
 };
 

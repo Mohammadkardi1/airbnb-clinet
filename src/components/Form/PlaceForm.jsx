@@ -104,7 +104,6 @@ const PlaceForm = () => {
   }
 
 
-
   return (
     <>
         <form onSubmit={handleSubmit(savePlace)} className='space-y-6 my-12'>
@@ -120,16 +119,17 @@ const PlaceForm = () => {
                         required: "Title of the place is required"
                     })}
                 />
-                <p className={`text-red-600 ${errors.title?.message ? "visible" : "invisible"}`}>
+                <p className={`plain-text text-red-600 ${errors.title?.message ? "visible" : "invisible"}`}>
                     {errors.title?.message}.
                 </p>
             </div>
             <div>
                 <PreInput
-                        header= {'Location'}
-                        description= {'Where is your place located'}
-                        />
+                    header= {'Location'}
+                    description= {'Where is your place located'}
+                    />
                 <Select placeholder="Select Location" isClearable
+                    className="plain-text"
                     options={getAll()}
                     value={watch('location')}
                     onChange={(value) => setValue('location', value)}
@@ -147,9 +147,9 @@ const PlaceForm = () => {
                     </div>
                     )}
                     classNames={{
-                    control: () => 'p-3 border-2',
-                    input: () => 'text-lg',
-                    option: () => 'text-lg'
+                    control: () => 'border-2',
+                    input: () => 'plain-text',
+                    option: () => 'plain-text'
                     }}
                     theme={(theme) => ({
                     ...theme,
@@ -163,9 +163,9 @@ const PlaceForm = () => {
                     header= {'Description'}
                     description= {'Description of the place'}
                     />
-                <textarea rows={4}
+                <textarea rows={4} className='plain-text'
                     {...register('description', {required: 'Please describe the place'})}/>
-                <p className={`text-red-600 ${errors.description?.message ? 'visible' : 'invisible'}`}>
+                <p className={`plain-text text-red-600 ${errors.description?.message ? 'visible' : 'invisible'}`}>
                     {errors.description?.message}.
                 </p>
             </div>
@@ -175,7 +175,7 @@ const PlaceForm = () => {
                     header= {'Photos'}
                     description= {'more = better'}
                     />
-                <label className="h-32 cursor-pointer flex items-center gap-1 justify-center border border-gray-400 bg-transparent rounded-2xl p-2 text-2xl text-gray-600">
+                <label className="h-32 cursor-pointer flex items-center gap-1 justify-center border border-gray-400 bg-transparent rounded-2xl p-2 text-xl text-gray-600">
                     <input name="photos" type="file" multiple className="hidden" accept="image/*"
                         {...register('photos', {required: "Please add some photos"})}/>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
@@ -183,7 +183,7 @@ const PlaceForm = () => {
                     </svg>
                     Upload
                 </label>
-                <p className={`text-red-600 ${errors.photos?.message ? 'visible' : 'invisible'}`}>
+                <p className={`plain-text text-red-600 ${errors.photos?.message ? 'visible' : 'invisible'}`}>
                         {errors.photos?.message}.
                 </p>
             </div>
@@ -196,7 +196,7 @@ const PlaceForm = () => {
                 <div className="grid mt-2 gap-2 grid-cols-1 sm:grid-cols-3 lg:grid-cols-6">
                     {/* <Perks perks={perks} setPerks={setPerks} /> */}
                     {perk_items.map((perk, index) => (
-                        <label key={index} className="border border-gray-400 p-4 flex rounded-2xl gap-2 items-center cursor-pointer hover:bg-brand hover:text-white hover:border-none">
+                        <label key={index} className="plain-text border border-gray-400 p-4 flex rounded-2xl gap-2 items-center cursor-pointer hover:bg-brand hover:text-white hover:border-none">
                             <input type="checkbox" checked={perks?.includes(perk.name)} name={perk.name} onChange={perkClick}/>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                 <path strokeLinecap="round" strokeLinejoin="round" d={perk.d} />
@@ -211,14 +211,14 @@ const PlaceForm = () => {
                     header= {'Extra info'}
                     description= {'House rules, etc'}
                     />
-                <textarea rows={4} {...register('extraInfo')}/>
+                <textarea rows={4} className='plain-text' {...register('extraInfo')}/>
             </div>
             <div>
                 <PreInput
                     header= {'Category'}
                     description= {'Select the category that accurately describes the place'}
                     />
-                <select {...register('category', { required: 'Selecting the category is required' })}>
+                <select className="plain-text" {...register('category', { required: 'Selecting the category is required' })}>
                     <option value="">Select a category</option>
                     <option value="Beach">Beach</option>
                     <option value="Windmills">Windmills</option>
@@ -236,7 +236,7 @@ const PlaceForm = () => {
                     <option value="Barns">Barns</option>
                     <option value="Lux">Lux</option>
                 </select>
-                <p className={`text-red-600 ${errors.category?.message ? 'visible' : 'invisible'}`}>
+                <p className={`plain-text text-red-600 ${errors.category?.message ? 'visible' : 'invisible'}`}>
                     {errors.category?.message}.
                 </p>
             </div>
@@ -248,7 +248,7 @@ const PlaceForm = () => {
                 <div className="grid gap-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
                     <div>
                         <h3 className="mt-2 mb-2">Rooms
-                            <span className={`text-red-600 ${errors.rooms?.message ? 'visible' : 'invisible'}`}>
+                            <span className={`plain-text text-red-600 ${errors.rooms?.message ? 'visible' : 'invisible'}`}>
                                 &nbsp;{errors.rooms?.message}.
                             </span>
                         </h3>
@@ -256,7 +256,7 @@ const PlaceForm = () => {
                     </div>
                     <div>
                         <h3 className="mt-2 mb-2">Bathrooms
-                            <span className={`text-red-600 ${errors.bathrooms?.message ? 'visible' : 'invisible'}`}>
+                            <span className={`plain-text text-red-600 ${errors.bathrooms?.message ? 'visible' : 'invisible'}`}>
                                 &nbsp;{errors.bathrooms?.message}.
                             </span>
                         </h3>
@@ -264,7 +264,7 @@ const PlaceForm = () => {
                     </div>
                     <div>
                         <h3 className="mt-2 mb-2">Max number of guests
-                            <span className={`text-red-600 ${errors.maxGuests?.message ? 'visible' : 'invisible'}`}>
+                            <span className={`plain-text text-red-600 ${errors.maxGuests?.message ? 'visible' : 'invisible'}`}>
                                 &nbsp;{errors.maxGuests?.message}.
                             </span>
                         </h3>
@@ -272,7 +272,7 @@ const PlaceForm = () => {
                     </div>
                     <div>
                         <h3 className="mt-2 mb-2">Price per night
-                            <span className={`text-red-600 ${errors.price?.message ? 'visible' : 'invisible'}`}>
+                            <span className={`plain-text text-red-600 ${errors.price?.message ? 'visible' : 'invisible'}`}>
                                 &nbsp;{errors.price?.message}.
                             </span>
                         </h3>

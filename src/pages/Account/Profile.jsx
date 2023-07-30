@@ -43,15 +43,15 @@ const Profile = () => {
       const listInfo = ({title, info}) => {
         return (
             <div>
-                <h1 className='text-xl font-bold'>{title}</h1>
-                <p className='text-lg'>{info}</p>
+                <h1 className='text-[1.1rem] lg:text-[1.3rem] font-semibold'>{title}</h1>
+                <p className='plain-text'>{info}</p>
             </div>
         )
     }
 
   return (
-    <div className="flex justify-center ">
-        <div className='w-[600px] space-y-8 text-base rounded-lg p-4'>
+
+        <div className='space-y-8 text-base rounded-lg p-4'>
             {/* <div className='flex justify-center'>
                 <Avatar src={user?.picture} alt= {user?.username} height={"100px"} />
             </div> */}
@@ -64,12 +64,11 @@ const Profile = () => {
             {listInfo({ title: 'NO. Bookings on your own properties', info: futureBookings?.length + pastBookings?.length })}
 
             <div className='flex justify-center pt-8'>
-                <button className='primary px-2 text-xl font-bold' onClick={logout}>
+                <button className='primary px-4' onClick={logout}>
                     Logout
                 </button> 
             </div>
         </div>
-    </div>
   )
 }
 

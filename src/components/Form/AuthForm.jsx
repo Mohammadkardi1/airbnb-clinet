@@ -111,28 +111,25 @@ const AuthForm = ({type}) => {
         navigate(switchRoute, {state : {path:location.state?.path}, replace :true})
     }
 
-return (
 
+
+
+return (
     <>
-    {loading &&
-        <div className="fixed inset-0 z-20 flex items-center justify-center bg-black bg-opacity-25">
-            <PageLoadingModel/>
-        </div>
-        }
     <div className="my-12  flex items-center justify-around">
         <div className="border border-gray-400 rounded-md w-[600px] shadow-md shadow-gray-300">
-            <h1 className="py-4 text-[2rem] font-medium text-center mb-4 border-b border-gray-400">
+            <h1 className="py-4 plain-title font-medium text-center mb-4 border-b border-gray-400">
                 {type === 'login' ? 'Log in' : 'Register'}
             </h1>
             <div className="p-8 space-y-4">
                 <form className="space-y-4" onSubmit={handleSubmit(handleRegisterUser)}>
-                    <h1 className="text-[1.5rem] font-medium mb-8">
+                    <h1 className="plain-title font-medium mb-8">
                         Welcome to Airbnb
                     </h1>
                     {type !== 'login' &&
                     <div>
                         <input type="text" placeholder="Username"
-                            className='peer p-4 font-light bg-white border-2 transition'
+                            className='peer font-light bg-white border-2 transition'
                             {...register("username", {
                             required: "Please enter your name",
                             minLength: {
@@ -145,7 +142,7 @@ return (
                             }
                             })}
                             />
-                            <p className={`text-red-600 ${errors.username?.message ? "visible" : "invisible"}`}>
+                            <p className={`plain-text text-red-600 ${errors.username?.message ? "visible" : "invisible"}`}>
                                 {errors.username?.message}.
                             </p>
                         </div>
@@ -160,25 +157,25 @@ return (
                             }
                         })}
                         />
-                        <p className={`text-red-600 ${errors.email?.message ? "visible" : "invisible"}`}>
+                        <p className={`plain-text text-red-600 ${errors.email?.message ? "visible" : "invisible"}`}>
                             {errors.email?.message}.
                         </p>
                     </div>
                     <div>
                         <div className='flex items-center justify-between w-full border border-gray-400   rounded-lg overflow-hidden'>
                             <input type={showPassword ? 'text' : 'password'} placeholder="Password"
-                                    className='flex-grow border-none  overflow-hidden'
+                                    className='flex-grow border-none overflow-hidden'
                                 {...register("password", {
                                     validate: validatePassword
                                 })}
                             />
                             <div 
-                                className='p-4 text-gray-500 cursor-pointer h-full border-l-2 border-gray-500'
+                                className='p-2 lg:p-4 text-gray-500 cursor-pointer h-full border-l-2 border-gray-500'
                                 onClick={() => setShowPassword(!showPassword)}>
                                 <RemoveRedEyeIcon size={25} />
                             </div>
                         </div>
-                        <p className={`text-red-600 ${errors.password?.message ? "visible" : "invisible"}`}>
+                        <p className={`plain-text text-red-600 ${errors.password?.message ? "visible" : "invisible"}`}>
                             {errors.password?.message}.
                         </p>
                     </div>
@@ -186,28 +183,32 @@ return (
                         {type === 'login' ? 'Log in' : 'Register'}
                     </button>
 
-                    <p className={`text-red-600 text-center ${authError ? "visible" : "invisible"}`}>
+                    <p className={`plain-text text-red-600 text-center ${authError ? "visible" : "invisible"}`}>
                         {authError}
                     </p>
                 </form>
                 {authError === "Your account has not verified yet. Please check your email for a verification link." 
                     &&
-                    <div className='flex justify-center'>
+                    <div className='plain-text flex justify-center'>
                         <button  className="text-black underline"
                             onClick={resendVerificationHandler}>
                             Resend verification email?
                         </button>
                     </div>
                 }
-                <div className="text-center py-2 text-gray-500">
+
+
+                <div className="plain-text text-center py-2 text-gray-500">
                     {type === 'login' ? "Don't have an account yet?" : 'Already have an account?'}
                     &nbsp;
-                    <div className='inline cursor-pointer' onClick={switchModel}>
-                        <p className='inline underline text-black'>{type === 'login' ? 'Register' : 'Log in'}</p>
-                    </div>
+                    <span className='cursor-pointer text-black underline' onClick={switchModel}>
+                        {type === 'login' ? 'Register' : 'Log in'}
+                    </span>
                 </div>
+
+
                 <div className="separate-line py-4 font-medium flex justify-center items-center">
-                    <p className="mx-4">or</p>
+                    <p className="plain-text mx-4">or</p>
                 </div>
                 <div className='flex justify-center z-10'>
                     <GoogleLogin
@@ -231,6 +232,11 @@ return (
             </div>
         </div>
     </div>
+    {loading &&
+        <div className="fixed inset-0 z-20 flex items-center justify-center bg-black bg-opacity-25">
+            <PageLoadingModel/>
+        </div>
+    }
     </>
 )
 }

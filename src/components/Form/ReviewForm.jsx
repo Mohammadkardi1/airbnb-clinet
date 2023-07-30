@@ -60,6 +60,7 @@ const ReviewForm = ({placeID}) => {
                 <textarea 
                     rows={4} 
                     type="text" 
+                    className='plain-text'
                     placeholder='Review Message...'
                     ref={reviewMsg}
                     required/>

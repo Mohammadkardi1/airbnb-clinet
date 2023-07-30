@@ -170,7 +170,7 @@ const BookingForm = ({place}) => {
             )}
             defaultValue='0'
             />
-        <p className={`text-red-600 ${errors.guests?.message ? "visible" : "invisible"}`}>
+        <p className={`plain-text text-red-600 ${errors.guests?.message ? "visible" : "invisible"}`}>
             {errors.guests?.message}.
         </p>
       </div>
@@ -191,7 +191,7 @@ const BookingForm = ({place}) => {
             })}
             defaultValue={user?.username}
             />
-        <p className={`text-red-600 ${errors.name?.message ? "visible" : "invisible"}`}>
+        <p className={`plain-text text-red-600 ${errors.name?.message ? "visible" : "invisible"}`}>
             {errors.name?.message}.
         </p>
       </div>
@@ -206,7 +206,7 @@ const BookingForm = ({place}) => {
                 message: 'Enter a valid 10-digit phone number'
               }
             })}/>
-        <p className={`text-red-600 ${errors.phone?.message ? 'visible': 'invisible'}`}>
+        <p className={`plain-text text-red-600 ${errors.phone?.message ? 'visible': 'invisible'}`}>
           {errors.phone?.message}.
         </p>
       </div>

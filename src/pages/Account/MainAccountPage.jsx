@@ -31,8 +31,6 @@ const header_items = [
 
 
 
-
-
 const MainAccountPage = () => {
 
   const {pathname} = useLocation();
@@ -40,7 +38,7 @@ const MainAccountPage = () => {
 
 
   const linkClasses = (type=null) => {
-    let classes = 'inline-flex gap-1 py-2 px-6 rounded-full'
+    let classes = 'inline-flex items-center gap-1 py-2 px-4 lg:px-6 rounded-full '
     if (type === subpage) {
       classes += ' bg-brand text-white'
     } else {
@@ -52,7 +50,7 @@ const MainAccountPage = () => {
 
   return (
     <>
-      <div className="w-full flex flex-wrap justify-center mt-8 gap-2 mb-8">
+      <div className="plain-text w-full flex flex-wrap justify-center mt-8 gap-2 mb-8">
         {
           header_items.map((item, index) => (
             <Link key={index} className={linkClasses(item.name)} to={`/account/${item.name}`}>
