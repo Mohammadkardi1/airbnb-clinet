@@ -51,7 +51,7 @@ const Bookings = () => {
         {futureBookings?.length > 0 &&
         <>
           <div className='flex items-center gap-1 font-semibold'>
-            <MdKeyboardDoubleArrowRight size={34}/>
+            <MdKeyboardDoubleArrowRight size={27}/>
             <PreInput 
                 header= 'Future Bookings'
               />
@@ -60,12 +60,12 @@ const Bookings = () => {
         </>
         }
 
-        <div className=' mt-28'></div>
+        <div className='mt-12'></div>
 
         {pastBookings?.length > 0 &&
         <>
           <div className='flex items-center gap-1 font-semibold'>
-            <MdKeyboardDoubleArrowRight size={34}/>
+            <MdKeyboardDoubleArrowRight size={27}/>
             <PreInput 
                 header= 'Past Bookings'
               />

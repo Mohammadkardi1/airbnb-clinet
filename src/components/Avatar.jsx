@@ -1,9 +1,8 @@
 
 
-const Avatar = ({ src, alt, height="35px" }) => {
+const Avatar = ({ src, alt }) => {
   return ( 
-    <div
-         style={{"height": height}}>
+    <div className="h-[30px] lg:h-[35px]">
         {src ? 
             <img 
                 src={src}

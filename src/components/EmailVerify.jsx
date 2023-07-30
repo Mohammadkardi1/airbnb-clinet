@@ -39,7 +39,7 @@ const EmailVerify = () => {
 							Email verified successfully! Please Log in.
 						</h1>
 						<Link to="/login">
-							<button className='primary px-12 py-4'>Login</button>
+							<button className='primary px-12'>Login</button>
 						</Link>
 					</>
 				) : (

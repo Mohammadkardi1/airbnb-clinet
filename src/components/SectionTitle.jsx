@@ -3,12 +3,12 @@ import React from 'react'
 const SectionTitle = ({title, secondaryText}) => {
   return (
     <div className="text-start mb-8">
-        <div className="text-[1.4rem] font-bold lg:text-[1.7rem]">
+        <h1 className="font-bold text-[1.3rem] lg:text-[1.5rem]">
             {title}
-        </div>
-        <div className="font-light text-neutral-500 mt-2 lg:text-[1.5rem]">
+        </h1>
+        <p className="font-light text-neutral-500 mt-2 text-[0.9rem] lg:text-[1.1rem]">
             {secondaryText}
-        </div>
+        </p>
     </div>
   )
 }

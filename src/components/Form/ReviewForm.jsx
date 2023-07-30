@@ -41,7 +41,7 @@ const ReviewForm = ({placeID}) => {
   return (
     <>
         <form className=' mt-28 space-y-4' action="" onSubmit={submithandler}>
-            <h2 className="font-semibold text-xl mb-4">Leave your experience</h2>
+            <h2 className="plain-title font-semibold mb-4">Leave your experience</h2>
             <div className="flex items-center gap-5">
                 {rates.map((item, index) => (
                     <div key={index} className=" relative hover:opacity-80 transition cursor-pointer"
@@ -64,7 +64,7 @@ const ReviewForm = ({placeID}) => {
                     ref={reviewMsg}
                     required/>
             </div>
-            <button className="primary px-8 py-4" type='submit' disabled={placeReviewing}>
+            <button className="primary px-8" type='submit' disabled={placeReviewing}>
                 {
                     placeReviewing ? 
                         <PageLoadingModel isFixed={false} size={"1.7em"} padding={"px-4"} color={"#fff"}/>

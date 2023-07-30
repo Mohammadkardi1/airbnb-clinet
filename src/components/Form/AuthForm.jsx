@@ -182,7 +182,7 @@ return (
                             {errors.password?.message}.
                         </p>
                     </div>
-                    <button type="submit" className="primary py-4 w-full">
+                    <button type="submit" className="primary w-full">
                         {type === 'login' ? 'Log in' : 'Register'}
                     </button>
 

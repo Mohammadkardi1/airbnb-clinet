@@ -280,7 +280,7 @@ const PlaceForm = () => {
                     </div>
                 </div>
             </div>
-            <button className="primary py-4 my-4 w-full" type="submit" disabled={loading}>
+            <button className="primary my-4 w-full" type="submit" disabled={loading}>
                 {
                     loading ? 
                         <PageLoadingModel  isFixed={false} size={"1.7em"} padding={"0"} color={"#fff"}/>

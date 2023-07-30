@@ -129,7 +129,7 @@ const BookingForm = ({place}) => {
     <form 
       className="flex flex-col gap-4 bg-white shadow p-4 rounded-2xl"
       onSubmit={handleSubmit(handleBookingPlace)}>
-      <div className="text-2xl text-center">
+      <div className="plain-title text-center">
         Price: ${place?.price} / per night
       </div>
       <div className=" w-full">
@@ -145,9 +145,9 @@ const BookingForm = ({place}) => {
             dayContentRenderer={dayContentRenderer}
             />
       </div>
-      <div className="flex flex-row items-center justify-between font-semibold text-lg">
-        <div>Total</div>
-        <div>${numberOfNights * place?.price}</div>
+      <div className="plain-title flex flex-row items-center justify-between font-semibold">
+        <h1>Total</h1>
+        <p>${numberOfNights * place?.price}</p>
       </div>
       <div>
         <label>Number of guests</label>
@@ -210,7 +210,7 @@ const BookingForm = ({place}) => {
           {errors.phone?.message}.
         </p>
       </div>
-      <button className="primary w-full mt-4 py-4" disabled={loading}>
+      <button className="primary w-full mt-4" disabled={loading}>
         {
             loading ? 
                 <PageLoadingModel isFixed={false} size={"1.7em"} padding={"0"} color={"#fff"}/>

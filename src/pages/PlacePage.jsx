@@ -66,17 +66,17 @@ const PlacePage = () => {
         <div className="flex flex-col gap-8 mt-20 static z-[1]">
           <div className="flex flex-col gap-8">
             <div className=" space-y-2">
-              <h1 className="text-xl font-semibold">Hosted by</h1>
+              <h1 className="plain-title font-semibold">Hosted by</h1>
               <div className="flex items-center gap-3">
                 <Avatar src={places[0]?.owner?.picture} alt ={places[0]?.owner?.username} />
-                <div>
+                <div className="plain-text">
                   <p>{places[0]?.owner?.username}</p>
                   <p className=" text-gray-500">{moment(places[0]?.createdAt).fromNow()}</p>
                 </div>
               </div>
             </div>
 
-            <div className="flex flex-row items-center gap-4 font-light text-neutral-500">
+            <div className="flex flex-row items-center gap-4 plain-text font-light text-neutral-500">
               <p>{places[0]?.maxGuests} guests</p>
               <p>{places[0]?.rooms} rooms</p>
               <p>{places[0]?.bathrooms} bathrooms</p>
@@ -89,8 +89,8 @@ const PlacePage = () => {
             />
           <hr />
           <div>
-                <h2 className="font-semibold text-2xl mb-3">Description</h2>
-                <p className="text-lg font-light text-neutral-500">
+                <h2 className="plain-title font-semibold mb-3">Description</h2>
+                <p className="text-lg font-light plain-text text-neutral-500">
                   {places[0]?.description}
                 </p>
           </div>
@@ -98,7 +98,7 @@ const PlacePage = () => {
           <>
           <hr />
           <div>
-              <h2 className="font-semibold text-2xl mb-3">Perks</h2>
+              <h2 className="plain-title font-semibold mb-3">Perks</h2>
               <div className=" grid grid-cols-2 gap-2">
               {
                 places[0]?.perks?.map((name, index) => (
@@ -113,8 +113,8 @@ const PlacePage = () => {
           <>
             <hr />
             <div>
-                <h2 className="font-semibold text-2xl mb-3">Extra info</h2>
-                <p className="text-lg font-light text-neutral-500">
+                <h2 className="plain-title font-semibold mb-3">Extra info</h2>
+                <p className="text-lg font-light plain-text text-neutral-500">
                   {places[0]?.extraInfo}
                 </p>
             </div>
@@ -130,7 +130,7 @@ const PlacePage = () => {
       {places[0]?.reviews?.length > 0 &&
       <>
       <div className="mt-12">
-        <h2 className="font-semibold text-2xl mb-4">Reviews</h2>
+        <h2 className="plain-title font-semibold mb-4">Reviews</h2>
         <div className=" space-y-8">
           {
               places[0]?.reviews?.slice(0, nextItems)?.map((review, index) => (
@@ -142,7 +142,7 @@ const PlacePage = () => {
       <div className="flex justify-center">
         {places[0]?.reviews?.length >= 6 && places[0]?.reviews?.length > nextItems &&
         <button
-            className="primary py-4 px-8 my-6 "
+            className="primary px-8"
             onClick={loadMoreHandler}>
             Load more
         </button>

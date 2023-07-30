@@ -20,8 +20,8 @@ const ListingReview = ({review}) => {
         <div className=" flex justify-center items-center">
             <Avatar src={review?.user?.picture} alt={review?.user?.username} />
         </div>
-        <div>
-            <h6 className='text-xl font-semibold'>
+        <div className='plain-text'>
+            <h6 className='text-[0.8rem] lg:text-[1rem] font-semibold'>
                 {review?.user?.username}
             </h6>
             <div className='flex items-center gap-1  font-semibold text-orange-600'>
@@ -29,9 +29,9 @@ const ListingReview = ({review}) => {
             </div>
         </div>
         <div></div>
-        <div>
+        <p className='plain-text'>
             {review?.comment}
-        </div>
+        </p>
     </div>
   )
 }

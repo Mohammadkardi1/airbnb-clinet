@@ -18,7 +18,7 @@ export const MessageModel = ({isModelOpen, setIsModelOpen, message}) => {
           </div>
           <div className='text-end '>
             <button 
-              className=' primary px-6 py-3'
+              className=' primary px-6'
               onClick={() => setIsModelOpen(!isModelOpen)}>
               Close
             </button>

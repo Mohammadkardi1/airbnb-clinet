@@ -55,12 +55,12 @@ const Home = () => {
         {categories_items.map((item, index) => (        
           <div key={index} onClick={() => filterPlacesByCategory(item.label)}
             className={`flex flex-col items-center justify-center gap-2 p-3 border-b-2
-                  hover:text-brand transition cursor-pointer
+                  hover:text-brand transition cursor-pointer plain-text
                   ${activeCategory === item.label ? 'text-brand border-b-brand ' : 'text-neutral-500 border-transparent'}`}>
             {item.icon}
-            <div className="font-medium text-sm">
+            <p className="font-medium">
               {item.label}
-            </div>
+            </p>
           </div>
         ))}
       </div>

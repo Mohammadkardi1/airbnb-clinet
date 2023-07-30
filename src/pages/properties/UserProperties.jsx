@@ -4,7 +4,7 @@ import ListingPlaceCard from "../../components/Listings/ListingPlaceCard";
 
 
 
-const UserPlaces =  ({listings}) => {
+const UserProperties =  ({listings}) => {
 
 
 
@@ -23,4 +23,4 @@ const UserPlaces =  ({listings}) => {
    );
 }
  
-export default UserPlaces;
+export default UserProperties;

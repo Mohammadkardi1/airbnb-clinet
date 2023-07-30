@@ -60,7 +60,7 @@ const Trips = () => {
         </>
         }
 
-        <div className=' mt-20'></div>
+        <div className='mt-12'></div>
         {pastBookings?.length > 0 &&
         <>
         <div className='flex items-center gap-1 font-semibold'>
