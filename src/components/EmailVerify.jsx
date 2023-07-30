@@ -31,25 +31,27 @@ const EmailVerify = () => {
 
 
 	return (
-		<div className='w-full h-[500px] lg:h-[800px] flex flex-col gap-6 items-center justify-center font-bold'>
-			{isVerified ? (
+		<div className='w-full mt-12 flex flex-col gap-6 items-center justify-center font-bold'>
+			{isVerified === 1 &&
 				<>
-					<img src={success} alt="success_img" className='w-[250px] lg:w-[350px]' />
-					<h1 className="plain-title">
+					<img src={success} alt="success_img" className='w-[150px] lg:w-[250px]' />
+					<h1 className="plain-text text-center">
 						Email verified successfully! Please Log in.
 					</h1>
 					<Link to="/login">
-						<button className='primary px-12'>Login</button>
+						<button className='primary px-4'>Login</button>
 					</Link>
 				</>
-				) : (
-				<>
-					<img src={failure} alt="failure_img" className='w-[250px] lg:w-[350px]' />
-					<h1 className="plain-title">
-						{authError}
-					</h1>
-				</>
-			)}
+				}
+				
+				{isVerified === 0 &&
+					<>
+						<img src={failure} alt="failure_img" className='w-[150px] lg:w-[250px]' />
+						<h1 className="plain-text text-center">
+							{authError}
+						</h1>
+					</>
+				}
 		</div>
 	);
 };

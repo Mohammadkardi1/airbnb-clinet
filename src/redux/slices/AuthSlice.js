@@ -10,7 +10,7 @@ const initialState = {
     user: {},
     loading: false,
     authError: '', 
-    isVerified: false
+    isVerified: 3
 }
 
 
@@ -55,7 +55,7 @@ const AuthSlice = createSlice({
             state.user = action?.payload
             localStorage.setItem('profile', JSON.stringify({...action?.payload}))
             state.authError = ''
-            state.isVerified = true
+            state.isVerified = 1
         })
         builder.addCase(loginUser.rejected, (state, action) => {
             state.loading = false
@@ -70,12 +70,12 @@ const AuthSlice = createSlice({
         })
         builder.addCase(verifyEmail.fulfilled, (state, action) => {
             state.loading = false
-            state.isVerified = true
+            state.isVerified = 1
             state.authError = ''
         })
         builder.addCase(verifyEmail.rejected, (state, action) => {
             state.loading = false
-            state.isVerified = false
+            state.isVerified = 0
             state.authError = action?.payload
         })
 
