@@ -56,6 +56,8 @@ const Profile = () => {
                 <Avatar src={user?.picture} alt= {user?.username} height={"100px"} />
             </div> */}
 
+
+
             {listInfo({ title: 'Username', info: user?.username })}
             {listInfo({ title: 'Email', info: user?.email })}
             {listInfo({ title: 'NO. your properties', info: places?.length })} 
