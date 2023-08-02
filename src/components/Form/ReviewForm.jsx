@@ -68,7 +68,7 @@ const ReviewForm = ({placeID}) => {
             <button className="primary px-8" type='submit' disabled={placeReviewing}>
                 {
                     placeReviewing ? 
-                        <PageLoadingModel isFixed={false} size={"1.7em"} padding={"px-4"} color={"#fff"}/>
+                        <PageLoadingModel isFixed={false} padding={"px-4"} color={"#fff"}/>
                     :
                     <div>
 

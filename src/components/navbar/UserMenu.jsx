@@ -74,6 +74,7 @@ const UserMenu = () => {
         onClick={() => setIsOpen(!isOpen)}>
         <div className={`${Object.keys(user).length === 0  ? "hidden" : "flex items-center gap-2"}`}>
             <Avatar src={user?.picture} alt={user?.username} />
+
             {user && (
                 <p className="plain-text ">
                 {user.username?.split(' ')[0]}
@@ -85,15 +86,15 @@ const UserMenu = () => {
         </svg> 
     </div>
     {isOpen && (
-        <div className=" absolute z-20 rounded-xl shadow-md w-[200px]  bg-white 
-            overflow-hidden right-24 top-24 text-md">
+        <div className="absolute z-20 rounded-xl shadow-md w-[150px] lg:w-[200px]  bg-white 
+            overflow-hidden right-24 top-20 plain-text">
           <div className="flex flex-col cursor-pointer">
             {user?.username ? (
               <>
               {
                 menu_items.map((item, index) => (
                     <Link key={index} to={`/account/${item.path}`}
-                        className="px-4 py-3 hover:bg-neutral-200 transition-colors">
+                        className="px-4 py-2 lg:py-3 hover:bg-neutral-200 transition-colors">
                         {item.displayName}
                     </Link>
                 ))

@@ -36,10 +36,19 @@ button.primary {
 }
 
 
+.css-18lrjg1-MuiCircularProgress-root {
+  width: 3rem!important;
+  height: 3rem!important;
+}
+
 .css-i4bv87-MuiSvgIcon-root {
   width: 20px!important;
 }
 @media only screen and (min-width:1024px) {
+  .css-18lrjg1-MuiCircularProgress-root {
+    width: 5rem!important;
+    height: 5rem!important;
+  }
   .css-i4bv87-MuiSvgIcon-root {
     width: 30px!important;
   }

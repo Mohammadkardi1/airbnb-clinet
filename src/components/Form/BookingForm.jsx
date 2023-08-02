@@ -202,8 +202,8 @@ const BookingForm = ({place}) => {
             {...register('phone', {
               required: 'Enter your phone number',
               pattern: {
-                value: /^\d{10}$/, 
-                message: 'Enter a valid 10-digit phone number'
+                value: /^\d{10,}$/, 
+                message: 'Enter a valid phone number'
               }
             })}/>
         <p className={`plain-text text-red-600 ${errors.phone?.message ? 'visible': 'invisible'}`}>
@@ -213,7 +213,7 @@ const BookingForm = ({place}) => {
       <button className="primary w-full mt-4" disabled={loading}>
         {
             loading ? 
-                <PageLoadingModel isFixed={false} size={"1.7em"} padding={"0"} color={"#fff"}/>
+                <PageLoadingModel isFixed={false} padding={"0"} color={"#fff"}/>
             :
             <div>
 

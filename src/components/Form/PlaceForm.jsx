@@ -283,7 +283,7 @@ const PlaceForm = () => {
             <button className="primary my-4 w-full" type="submit" disabled={loading}>
                 {
                     loading ? 
-                        <PageLoadingModel  isFixed={false} size={"1.7em"} padding={"0"} color={"#fff"}/>
+                        <PageLoadingModel  isFixed={false} padding={"0"} color={"#fff"}/>
                     :
                     isUpdated ? "Update" : "Submit"
                 }
