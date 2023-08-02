@@ -211,7 +211,7 @@ const BookingForm = ({place}) => {
       </div>
       <button className="primary w-full mt-4" disabled={loading}>
         {
-            true ? 
+            loading ? 
                 <PageLoadingModel isFixed={false} padding={"0"} color={"#fff"}/>
             :
             <div>
