@@ -11,6 +11,20 @@ import decode from 'jwt-decode';
 function App() {
   const dispatch = useDispatch()
 
+
+
+  // const now = new Date(); 
+  // now.setHours(0, 0, 0, 0); 
+  // const startOfTodayTimestamp = now.getTime(); 
+
+  
+  const now = new Date(); 
+  now.setHours(23, 59, 59, 999); 
+  const endOfTodayTimestamp = now.getTime(); 
+
+  console.log('endOfTodayTimestamp', endOfTodayTimestamp)
+
+
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem('profile'))?.token;
     if (token) {

@@ -100,13 +100,17 @@ const BookingForm = ({place}) => {
     } else {
       const datesArray = eachDayOfInterval({ start: date[0].startDate, end: date[0].endDate })
       const timestampsArray = datesArray.map(date => date.getTime())
+
+      const endOfDayForEndDate = new Date(date[0]?.endDate.getTime()); 
+      endOfDayForEndDate.setHours(23, 59, 59, 999); 
+  
       const submitedData = {...data,
             price: place?.price * timestampsArray.length,
             numberOfNights: timestampsArray.length,
             user: user?._id, 
             place: place?._id,
             checkIn:date[0]?.startDate.getTime(), 
-            checkOut:date[0]?.endDate.getTime()}
+            checkOut:endOfDayForEndDate.getTime()}
       try {
         await dispatch(addBooking(submitedData))
         await dispatch(setUnavailableDates({placeID: place?._id, timestamps: timestampsArray }))
@@ -117,11 +121,6 @@ const BookingForm = ({place}) => {
       }
     }
   }
-
-
-
-
-
 
 
   return (
